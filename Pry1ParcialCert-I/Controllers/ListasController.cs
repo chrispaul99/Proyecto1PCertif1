@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
+using BEUProyecto.Transactions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
@@ -17,7 +18,8 @@ namespace Pry1ParcialCert_I.Controllers
         // GET: Listas
         public ActionResult Index()
         {
-            return View(db.Lista.ToList());
+            ViewBag.title = "LISTAS DE PEDIDOS";
+            return View(ListaBLL.List());
         }
 
         // GET: Listas/Details/5
@@ -27,7 +29,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lista lista = db.Lista.Find(id);
+            Lista lista = ListaBLL.Get(id);
             if (lista == null)
             {
                 return HttpNotFound();
@@ -50,8 +52,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Lista.Add(lista);
-                db.SaveChanges();
+                ListaBLL.Create(lista);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +66,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lista lista = db.Lista.Find(id);
+            Lista lista = ListaBLL.Get(id);
             if (lista == null)
             {
                 return HttpNotFound();
@@ -82,8 +83,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lista).State = EntityState.Modified;
-                db.SaveChanges();
+                ListaBLL.Update(lista);
                 return RedirectToAction("Index");
             }
             return View(lista);
@@ -96,7 +96,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lista lista = db.Lista.Find(id);
+            Lista lista = ListaBLL.Get(id);
             if (lista == null)
             {
                 return HttpNotFound();
@@ -109,19 +109,8 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Lista lista = db.Lista.Find(id);
-            db.Lista.Remove(lista);
-            db.SaveChanges();
+            ListaBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
