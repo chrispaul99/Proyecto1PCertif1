@@ -7,17 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
+using BEUProyecto.Transactions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
     public class DireccionesController : Controller
     {
-        private Entities db = new Entities();
-
         // GET: Direcciones
         public ActionResult Index()
         {
-            return View(db.Direccion.ToList());
+            ViewBag.Title = "Direcciones";
+            return View(DireccionBLL.List());
         }
 
         // GET: Direcciones/Details/5
@@ -27,7 +27,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Direccion direccion = db.Direccion.Find(id);
+            Direccion direccion = DireccionBLL.Get(id);
             if (direccion == null)
             {
                 return HttpNotFound();
@@ -50,8 +50,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Direccion.Add(direccion);
-                db.SaveChanges();
+                DireccionBLL.Create(direccion);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +64,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Direccion direccion = db.Direccion.Find(id);
+            Direccion direccion = DireccionBLL.Get(id);
             if (direccion == null)
             {
                 return HttpNotFound();
@@ -82,8 +81,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(direccion).State = EntityState.Modified;
-                db.SaveChanges();
+                DireccionBLL.Update(direccion);
                 return RedirectToAction("Index");
             }
             return View(direccion);
@@ -96,7 +94,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Direccion direccion = db.Direccion.Find(id);
+            Direccion direccion = DireccionBLL.Get(id);
             if (direccion == null)
             {
                 return HttpNotFound();
@@ -109,19 +107,8 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Direccion direccion = db.Direccion.Find(id);
-            db.Direccion.Remove(direccion);
-            db.SaveChanges();
+            DireccionBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

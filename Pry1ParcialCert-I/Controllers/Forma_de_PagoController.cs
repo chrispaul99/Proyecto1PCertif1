@@ -7,17 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
+using BEUProyecto.Transactions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
     public class Forma_de_PagoController : Controller
     {
-        private Entities db = new Entities();
-
         // GET: Forma_de_Pago
         public ActionResult Index()
         {
-            return View(db.Forma_de_Pago.ToList());
+            ViewBag.Title = "Formas de Pago";
+            return View(FormaDePagoBLL.List());
         }
 
         // GET: Forma_de_Pago/Details/5
@@ -27,7 +27,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Forma_de_Pago forma_de_Pago = db.Forma_de_Pago.Find(id);
+            Forma_de_Pago forma_de_Pago = FormaDePagoBLL.Get(id);
             if (forma_de_Pago == null)
             {
                 return HttpNotFound();
@@ -50,8 +50,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Forma_de_Pago.Add(forma_de_Pago);
-                db.SaveChanges();
+                FormaDePagoBLL.Create(forma_de_Pago);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +64,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Forma_de_Pago forma_de_Pago = db.Forma_de_Pago.Find(id);
+            Forma_de_Pago forma_de_Pago = FormaDePagoBLL.Get(id);
             if (forma_de_Pago == null)
             {
                 return HttpNotFound();
@@ -82,8 +81,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(forma_de_Pago).State = EntityState.Modified;
-                db.SaveChanges();
+                FormaDePagoBLL.Update(forma_de_Pago);
                 return RedirectToAction("Index");
             }
             return View(forma_de_Pago);
@@ -96,7 +94,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Forma_de_Pago forma_de_Pago = db.Forma_de_Pago.Find(id);
+            Forma_de_Pago forma_de_Pago = FormaDePagoBLL.Get(id);
             if (forma_de_Pago == null)
             {
                 return HttpNotFound();
@@ -109,19 +107,8 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Forma_de_Pago forma_de_Pago = db.Forma_de_Pago.Find(id);
-            db.Forma_de_Pago.Remove(forma_de_Pago);
-            db.SaveChanges();
+            FormaDePagoBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
