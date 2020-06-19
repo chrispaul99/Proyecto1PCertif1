@@ -7,18 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
+using BEUProyecto.Transactions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
     public class ComerciantesController : Controller
     {
-        private Entities db = new Entities();
-
         // GET: Comerciantes
         public ActionResult Index()
         {
-            var comerciante = db.Comerciante.Include(c => c.Persona);
-            return View(comerciante.ToList());
+            ViewBag.Title = "Comerciantes";
+            return View(ComercianteBLL.List());
         }
 
         // GET: Comerciantes/Details/5
@@ -28,7 +27,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comerciante comerciante = db.Comerciante.Find(id);
+            Comerciante comerciante = ComercianteBLL.Get(id);
             if (comerciante == null)
             {
                 return HttpNotFound();
@@ -39,7 +38,7 @@ namespace Pry1ParcialCert_I.Controllers
         // GET: Comerciantes/Create
         public ActionResult Create()
         {
-            ViewBag.idPersona = new SelectList(db.Persona, "idPersona", "nombres");
+            ViewBag.idPersona = new SelectList(PersonaBLL.List(), "idPersona", "nombres");
             return View();
         }
 
@@ -52,12 +51,11 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Comerciante.Add(comerciante);
-                db.SaveChanges();
+                ComercianteBLL.Create(comerciante);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idPersona = new SelectList(db.Persona, "idPersona", "nombres", comerciante.idPersona);
+            ViewBag.idPersona = new SelectList(PersonaBLL.List(), "idPersona", "nombres", comerciante.idPersona);
             return View(comerciante);
         }
 
@@ -68,12 +66,12 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comerciante comerciante = db.Comerciante.Find(id);
+            Comerciante comerciante = ComercianteBLL.Get(id);
             if (comerciante == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idPersona = new SelectList(db.Persona, "idPersona", "nombres", comerciante.idPersona);
+            ViewBag.idPersona = new SelectList(PersonaBLL.List(), "idPersona", "nombres", comerciante.idPersona);
             return View(comerciante);
         }
 
@@ -86,11 +84,10 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(comerciante).State = EntityState.Modified;
-                db.SaveChanges();
+                ComercianteBLL.Update(comerciante);
                 return RedirectToAction("Index");
             }
-            ViewBag.idPersona = new SelectList(db.Persona, "idPersona", "nombres", comerciante.idPersona);
+            ViewBag.idPersona = new SelectList(PersonaBLL.List(), "idPersona", "nombres", comerciante.idPersona);
             return View(comerciante);
         }
 
@@ -101,7 +98,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comerciante comerciante = db.Comerciante.Find(id);
+            Comerciante comerciante = ComercianteBLL.Get(id);
             if (comerciante == null)
             {
                 return HttpNotFound();
@@ -114,19 +111,8 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Comerciante comerciante = db.Comerciante.Find(id);
-            db.Comerciante.Remove(comerciante);
-            db.SaveChanges();
+            ComercianteBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
