@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
+using BEUProyecto.Transactions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
@@ -17,8 +18,8 @@ namespace Pry1ParcialCert_I.Controllers
         // GET: Negocios
         public ActionResult Index()
         {
-            var negocio = db.Negocio.Include(n => n.Comerciante).Include(n => n.Direccion);
-            return View(negocio.ToList());
+            ViewBag.title = "LISTADO DE NEGOCIOS REGISTRADOS";
+            return View(NegocioBLL.List());
         }
 
         // GET: Negocios/Details/5
@@ -28,7 +29,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Negocio negocio = db.Negocio.Find(id);
+            Negocio negocio = NegocioBLL.Get(id);
             if (negocio == null)
             {
                 return HttpNotFound();
@@ -53,8 +54,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Negocio.Add(negocio);
-                db.SaveChanges();
+                NegocioBLL.Create(negocio);
                 return RedirectToAction("Index");
             }
 
@@ -70,7 +70,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Negocio negocio = db.Negocio.Find(id);
+            Negocio negocio = NegocioBLL.Get(id);
             if (negocio == null)
             {
                 return HttpNotFound();
@@ -89,8 +89,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(negocio).State = EntityState.Modified;
-                db.SaveChanges();
+                NegocioBLL.Update(negocio);
                 return RedirectToAction("Index");
             }
             ViewBag.idComerciante = new SelectList(db.Comerciante, "idComerciante", "baseLegal", negocio.idComerciante);
@@ -105,7 +104,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Negocio negocio = db.Negocio.Find(id);
+            Negocio negocio = NegocioBLL.Get(id);
             if (negocio == null)
             {
                 return HttpNotFound();
@@ -118,19 +117,8 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Negocio negocio = db.Negocio.Find(id);
-            db.Negocio.Remove(negocio);
-            db.SaveChanges();
+            NegocioBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
