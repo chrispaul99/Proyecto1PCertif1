@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
+using BEUProyecto.Transactions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
@@ -17,8 +18,8 @@ namespace Pry1ParcialCert_I.Controllers
         // GET: Pedidos
         public ActionResult Index()
         {
-            var pedido = db.Pedido.Include(p => p.Forma_de_Pago).Include(p => p.Lista);
-            return View(pedido.ToList());
+            ViewBag.title = "LISTADO DE PEDIDOS REGISTRADOS";
+            return View(PedidoBLL.List());
         }
 
         // GET: Pedidos/Details/5
@@ -28,7 +29,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pedido pedido = db.Pedido.Find(id);
+            Pedido pedido = PedidoBLL.Get(id);
             if (pedido == null)
             {
                 return HttpNotFound();
@@ -53,8 +54,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Pedido.Add(pedido);
-                db.SaveChanges();
+                PedidoBLL.Create(pedido);
                 return RedirectToAction("Index");
             }
 
@@ -70,7 +70,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pedido pedido = db.Pedido.Find(id);
+            Pedido pedido = PedidoBLL.Get(id);
             if (pedido == null)
             {
                 return HttpNotFound();
@@ -89,8 +89,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pedido).State = EntityState.Modified;
-                db.SaveChanges();
+                PedidoBLL.Create(pedido);
                 return RedirectToAction("Index");
             }
             ViewBag.idFormaPago = new SelectList(db.Forma_de_Pago, "idFormaPago", "idFormaPago", pedido.idFormaPago);
@@ -105,7 +104,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pedido pedido = db.Pedido.Find(id);
+            Pedido pedido = PedidoBLL.Get(id);
             if (pedido == null)
             {
                 return HttpNotFound();
@@ -118,19 +117,8 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pedido pedido = db.Pedido.Find(id);
-            db.Pedido.Remove(pedido);
-            db.SaveChanges();
+            PedidoBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

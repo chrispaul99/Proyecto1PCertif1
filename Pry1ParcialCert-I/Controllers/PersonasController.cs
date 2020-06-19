@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
+using BEUProyecto.Transactions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
@@ -17,8 +18,8 @@ namespace Pry1ParcialCert_I.Controllers
         // GET: Personas
         public ActionResult Index()
         {
-            var persona = db.Persona.Include(p => p.Direccion);
-            return View(persona.ToList());
+            ViewBag.title = "LISTADO DE PERSONAS REGISTRADAS";
+            return View(PersonaBLL.List());
         }
 
         // GET: Personas/Details/5
@@ -28,7 +29,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = db.Persona.Find(id);
+            Persona persona = PersonaBLL.Get(id);
             if (persona == null)
             {
                 return HttpNotFound();
@@ -52,8 +53,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Persona.Add(persona);
-                db.SaveChanges();
+                PersonaBLL.Create(persona);
                 return RedirectToAction("Index");
             }
 
@@ -68,7 +68,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = db.Persona.Find(id);
+            Persona persona = PersonaBLL.Get(id);
             if (persona == null)
             {
                 return HttpNotFound();
@@ -86,8 +86,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(persona).State = EntityState.Modified;
-                db.SaveChanges();
+                PersonaBLL.Update(persona);
                 return RedirectToAction("Index");
             }
             ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre", persona.idDireccion);
@@ -101,7 +100,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = db.Persona.Find(id);
+            Persona persona = PersonaBLL.Get(id);
             if (persona == null)
             {
                 return HttpNotFound();
@@ -114,19 +113,8 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Persona persona = db.Persona.Find(id);
-            db.Persona.Remove(persona);
-            db.SaveChanges();
+            PersonaBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
