@@ -7,18 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
+using BEUProyecto.Transactions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
     public class DetallesController : Controller
     {
-        private Entities db = new Entities();
-
         // GET: Detalles
         public ActionResult Index()
         {
-            var detalle = db.Detalle.Include(d => d.Lista).Include(d => d.Producto);
-            return View(detalle.ToList());
+            ViewBag.Title = "Detalles";
+            return View(DetalleBLL.List());
         }
 
         // GET: Detalles/Details/5
@@ -28,7 +27,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Detalle detalle = db.Detalle.Find(id);
+            Detalle detalle = DetalleBLL.Get(id);
             if (detalle == null)
             {
                 return HttpNotFound();
@@ -39,8 +38,8 @@ namespace Pry1ParcialCert_I.Controllers
         // GET: Detalles/Create
         public ActionResult Create()
         {
-            ViewBag.idLista = new SelectList(db.Lista, "idLista", "idLista");
-            ViewBag.idProducto = new SelectList(db.Producto, "idProducto", "nombre");
+            ViewBag.idLista = new SelectList(ListaBLL.List(), "idLista", "idLista");
+            ViewBag.idProducto = new SelectList(ProductoBLL.List(), "idProducto", "nombre");
             return View();
         }
 
@@ -53,13 +52,12 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Detalle.Add(detalle);
-                db.SaveChanges();
+                DetalleBLL.Create(detalle);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idLista = new SelectList(db.Lista, "idLista", "idLista", detalle.idLista);
-            ViewBag.idProducto = new SelectList(db.Producto, "idProducto", "nombre", detalle.idProducto);
+            ViewBag.idLista = new SelectList(ListaBLL.List(), "idLista", "idLista", detalle.idLista);
+            ViewBag.idProducto = new SelectList(ProductoBLL.List(), "idProducto", "nombre", detalle.idProducto);
             return View(detalle);
         }
 
@@ -70,13 +68,13 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Detalle detalle = db.Detalle.Find(id);
+            Detalle detalle = DetalleBLL.Get(id);
             if (detalle == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idLista = new SelectList(db.Lista, "idLista", "idLista", detalle.idLista);
-            ViewBag.idProducto = new SelectList(db.Producto, "idProducto", "nombre", detalle.idProducto);
+            ViewBag.idLista = new SelectList(ListaBLL.List(), "idLista", "idLista", detalle.idLista);
+            ViewBag.idProducto = new SelectList(ProductoBLL.List(), "idProducto", "nombre", detalle.idProducto);
             return View(detalle);
         }
 
@@ -89,12 +87,11 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(detalle).State = EntityState.Modified;
-                db.SaveChanges();
+                DetalleBLL.Update(detalle);
                 return RedirectToAction("Index");
             }
-            ViewBag.idLista = new SelectList(db.Lista, "idLista", "idLista", detalle.idLista);
-            ViewBag.idProducto = new SelectList(db.Producto, "idProducto", "nombre", detalle.idProducto);
+            ViewBag.idLista = new SelectList(ListaBLL.List(), "idLista", "idLista", detalle.idLista);
+            ViewBag.idProducto = new SelectList(ProductoBLL.List(), "idProducto", "nombre", detalle.idProducto);
             return View(detalle);
         }
 
@@ -105,7 +102,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Detalle detalle = db.Detalle.Find(id);
+            Detalle detalle = DetalleBLL.Get(id);
             if (detalle == null)
             {
                 return HttpNotFound();
@@ -118,19 +115,8 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Detalle detalle = db.Detalle.Find(id);
-            db.Detalle.Remove(detalle);
-            db.SaveChanges();
+            DetalleBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

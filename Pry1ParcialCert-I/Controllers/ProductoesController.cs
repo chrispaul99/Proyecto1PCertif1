@@ -7,18 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
+using BEUProyecto.Transactions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
     public class ProductoesController : Controller
     {
-        private Entities db = new Entities();
-
         // GET: Productoes
         public ActionResult Index()
         {
-            var producto = db.Producto.Include(p => p.Negocio);
-            return View(producto.ToList());
+            ViewBag.Title = "Productos";
+            return View(ProductoBLL.List());
         }
 
         // GET: Productoes/Details/5
@@ -28,7 +27,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Producto.Find(id);
+            Producto producto = ProductoBLL.Get(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -39,7 +38,7 @@ namespace Pry1ParcialCert_I.Controllers
         // GET: Productoes/Create
         public ActionResult Create()
         {
-            ViewBag.idNegocio = new SelectList(db.Negocio, "idNegocio", "nombre");
+            ViewBag.idNegocio = new SelectList(NegocioBLL.List(), "idNegocio", "nombre");
             return View();
         }
 
@@ -52,12 +51,11 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Producto.Add(producto);
-                db.SaveChanges();
+                ProductoBLL.Create(producto);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idNegocio = new SelectList(db.Negocio, "idNegocio", "nombre", producto.idNegocio);
+            ViewBag.idNegocio = new SelectList(NegocioBLL.List(), "idNegocio", "nombre", producto.idNegocio);
             return View(producto);
         }
 
@@ -68,12 +66,12 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Producto.Find(id);
+            Producto producto = ProductoBLL.Get(id);
             if (producto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idNegocio = new SelectList(db.Negocio, "idNegocio", "nombre", producto.idNegocio);
+            ViewBag.idNegocio = new SelectList(NegocioBLL.List(), "idNegocio", "nombre", producto.idNegocio);
             return View(producto);
         }
 
@@ -86,11 +84,10 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(producto).State = EntityState.Modified;
-                db.SaveChanges();
+                ProductoBLL.Update(producto);
                 return RedirectToAction("Index");
             }
-            ViewBag.idNegocio = new SelectList(db.Negocio, "idNegocio", "nombre", producto.idNegocio);
+            ViewBag.idNegocio = new SelectList(NegocioBLL.List(), "idNegocio", "nombre", producto.idNegocio);
             return View(producto);
         }
 
@@ -101,7 +98,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Producto.Find(id);
+            Producto producto = ProductoBLL.Get(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -114,19 +111,8 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Producto producto = db.Producto.Find(id);
-            db.Producto.Remove(producto);
-            db.SaveChanges();
+            ProductoBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
