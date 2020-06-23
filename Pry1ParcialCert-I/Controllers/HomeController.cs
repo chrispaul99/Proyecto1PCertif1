@@ -10,7 +10,8 @@ namespace Pry1ParcialCert_I.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            ViewBag.title = "MI VECI";
+            return View("Home");
         }
 
         public ActionResult About()
