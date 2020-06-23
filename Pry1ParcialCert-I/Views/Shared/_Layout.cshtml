@@ -1,43 +1,112 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @{ /*ORIGINAL
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+     @Styles.Render("~/Content/css")
+    }
+    @{ /*EXTRAIDOS*/}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>@ViewBag.title</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~images/fevicon.png" type="image/gif" />
+    @Styles.Render("~/Content/css/style.css")
+    @Styles.Render("~/Content/css/bootstrap.min.css")
+    @Styles.Render("~/Content/css/responsive.css")
+    @Styles.Render("~/Content/css/jquery.mCustomScrollbar.min.css")
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
+<body class="main-layout">
+    <header>
+        <div class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                        <div class="full">
+                            <div class="center-desk">
+                                <div class="logo">
+                                    <a href='@Url.Action("Index", "Home")'>
+                                        <img src='@Url.Content("~/images/logo.svg")' />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="border-radius: 40px;width: 66%;margin-left: auto">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                                    <li class="down_btn"><a href="#tienda">TIENDA</a></li>
+                                    <li class="down_btn"><a href="#productos">PRODUCTOS</a></li>
+                                    <li class="down_btn"><a href="#somos">¿QUIÉNES SOMOS?</a></li>
+                                    <li class="login">@Html.ActionLink("Iniciar Sesión", "Index", "Home")</li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </header>
+    <div>
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="address">
+                                <h3>Desarrollado por: </h3>
+                            </div>
+                            <ul class="location_icon">
+                                <li>Christian Guanopatin</li>
+                                <li>Mauro Ruiz</li>
+                                <li>Estudiantes de Ingenieria de Software</li>
+                                <li>Universidad de las Fuerzas Armadas ESPE SEDE LATACUNGA</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>&copy; @DateTime.Now.Year - MI VECI</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <div class="overlay"></div>
+    @{ /*ORIGINAL
+     @Scripts.Render("~/bundles/jquery")
+     @Scripts.Render("~/bundles/bootstrap")
+    }
+    @{ /*EXTRAIDO*/}
+    @Scripts.Render("Scripts/js/jquery.min.js")
+    @Scripts.Render("Scripts/js/popper.min.js")
+    @Scripts.Render("Scripts/js/jquery.min.js")
+    @Scripts.Render("Scripts/js/bootstrap.bundle.min.js")
+    @Scripts.Render("Scripts/js/jquery-3.0.0.min.js")
+    @Scripts.Render("Scripts/js/jquery.mCustomScrollbar.concat.min.js")
+    @Scripts.Render("Scripts/js/custom.js")
 </body>
 </html>
