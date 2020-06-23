@@ -143,6 +143,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\cssCliente\demo.min.css" />
+    <Content Include="Content\cssCliente\jqvmap.min.css" />
+    <Content Include="Content\cssCliente\tabler.min.css" />
     <Content Include="Content\css\animate.min.css" />
     <Content Include="Content\css\bootstrap-grid.css" />
     <Content Include="Content\css\bootstrap-grid.min.css" />
@@ -212,6 +215,8 @@
     <Content Include="fonts\fonts\Poppins-SemiBoldItalic.ttf" />
     <Content Include="fonts\fonts\Poppins-Thin.ttf" />
     <Content Include="fonts\fonts\Poppins-ThinItalic.ttf" />
+    <Content Include="Scripts\jsCliente\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\jsCliente\tabler.min.js" />
     <Content Include="Scripts\js\bootstrap.bundle.js" />
     <Content Include="Scripts\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\js\bootstrap.js" />
@@ -331,6 +336,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Views\Shared\_LayoutCliente.cshtml" />
+    <Content Include="Views\Home\PanelCliente_Pedidos.cshtml" />
+    <Content Include="Views\Home\PanelCliente_Inicio.cshtml" />
+    <Content Include="Views\Home\PanelCliente_InformacionUsuario.cshtml" />
+    <Content Include="Views\Home\Comprobante.cshtml" />
+    <Content Include="Views\Home\Ingresar.cshtml" />
+    <Content Include="Views\Home\PanelCliente_ListaCompras.cshtml" />
+    <Content Include="Views\Home\Registrarse.cshtml" />
+    <Content Include="Views\Home\OlvidemiContraseña.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BEUProyecto\BEUProyecto.csproj">
