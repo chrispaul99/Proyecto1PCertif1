@@ -1,4 +1,4 @@
-﻿@modelBEUProyecto.Persona
+﻿@model BEUProyecto.Persona
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
@@ -10,10 +10,10 @@
                 <img src='@Url.Content("~/images/logo.svg")' height="100" />
             </a>
         </div>
-        @using (Html.BeginForm({ @class = "card card - md", @id = "personas" }))
+        @using (Html.BeginForm(new { @class = "card card - md", @id = "personas" }))
         {
             @Html.AntiForgeryToken()
-             @Html.HiddenFor(model => model.)
+             @Html.HiddenFor(model => model.idDireccion)
             <div class="card-body">
                 <h2 class="mb-5 text-center">Registrate</h2>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })

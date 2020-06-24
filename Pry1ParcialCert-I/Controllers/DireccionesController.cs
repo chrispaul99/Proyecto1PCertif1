@@ -53,7 +53,7 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 DireccionBLL.Create(direccion);
                
-                return RedirectToAction("Register","Home",direccion.idDireccion);
+                return RedirectToAction("Register","Home", ViewBag.idDir = direccion.idDireccion);
             }
 
             return View();

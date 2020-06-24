@@ -54,7 +54,7 @@ namespace Pry1ParcialCert_I.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idPersona,nombres,apellidos,cedula,celular,correo,password,rol,idDireccion")] Persona persona)
+        public ActionResult Register([Bind(Include = "idPersona,nombres,apellidos,cedula,celular,correo,password,rol,idDireccion")] Persona persona)
         {
             if (ModelState.IsValid)
             {
