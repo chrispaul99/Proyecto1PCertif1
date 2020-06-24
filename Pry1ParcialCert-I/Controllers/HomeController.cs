@@ -14,18 +14,13 @@ namespace Pry1ParcialCert_I.Controllers
             return View("Home");
         }
 
-        public ActionResult About()
+        public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View("Login");
         }
-
-        public ActionResult Contact()
+        public ActionResult Register(int? id)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View("Registro");
         }
     }
 }

@@ -26,8 +26,8 @@
     </Key>
     <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="latitud" Type="Double" Nullable="false" />
-    <Property Name="longitud" Type="Double" Nullable="false" />
+    <Property Name="latitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="longitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="referencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Negocio" Relationship="Self.FK_Negocio_Direccion" FromRole="Direccion" ToRole="Negocio" />
     <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_Direccion" FromRole="Direccion" ToRole="Persona" />
@@ -93,7 +93,7 @@
     <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="rol" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="idDireccion" Type="Int32" Nullable="false" />
+    <Property Name="idDireccion" Type="Int32" />
     <NavigationProperty Name="Comerciante" Relationship="Self.FK_Comerciante_Persona" FromRole="Persona" ToRole="Comerciante" />
     <NavigationProperty Name="Direccion" Relationship="Self.FK_Persona_Direccion" FromRole="Persona" ToRole="Direccion" />
   </EntityType>
@@ -182,7 +182,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Persona_Direccion">
-    <End Role="Direccion" Type="Self.Direccion" Multiplicity="1">
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Persona" Type="Self.Persona" Multiplicity="*" />

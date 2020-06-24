@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,19 @@ namespace BEUProyecto.Transactions
             Entities db = new Entities();
             return db.Direccion.Find(id);
         }
-
+        public static Direccion GetAdress(string ln,string lat)
+        {
+            int id = 0;
+            Entities db = new Entities();
+            foreach(var item in db.Direccion)
+            {
+                if(item.latitud==ln && item.latitud == lat)
+                {
+                    id = item.idDireccion;   
+                }
+            }
+            return db.Direccion.Find(id);
+        }
         public static void Update(Direccion direccion)
         {
             using (Entities db = new Entities())

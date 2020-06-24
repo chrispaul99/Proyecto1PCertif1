@@ -36,7 +36,6 @@ namespace Pry1ParcialCert_I.Controllers
             }
             return View(lista);
         }
-
         // GET: Listas/Create
         public ActionResult Create()
         {

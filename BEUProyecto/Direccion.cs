@@ -23,8 +23,8 @@ namespace BEUProyecto
     
         public int idDireccion { get; set; }
         public string nombre { get; set; }
-        public double latitud { get; set; }
-        public double longitud { get; set; }
+        public string latitud { get; set; }
+        public string longitud { get; set; }
         public string referencia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

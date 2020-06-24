@@ -28,7 +28,7 @@ namespace BEUProyecto
         public string correo { get; set; }
         public string password { get; set; }
         public string rol { get; set; }
-        public int idDireccion { get; set; }
+        public Nullable<int> idDireccion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comerciante> Comerciante { get; set; }

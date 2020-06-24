@@ -266,10 +266,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Detalles\Create.cshtml" />
+    <Content Include="Views\Detalles\Register.cshtml" />
     <Content Include="Views\Detalles\Delete.cshtml" />
     <Content Include="Views\Detalles\Details.cshtml" />
     <Content Include="Views\Detalles\Edit.cshtml" />
@@ -279,7 +276,6 @@
     <Content Include="Views\Comerciantes\Details.cshtml" />
     <Content Include="Views\Comerciantes\Edit.cshtml" />
     <Content Include="Views\Comerciantes\Index.cshtml" />
-    <Content Include="Views\Direcciones\Create.cshtml" />
     <Content Include="Views\Direcciones\Delete.cshtml" />
     <Content Include="Views\Direcciones\Details.cshtml" />
     <Content Include="Views\Direcciones\Edit.cshtml" />
@@ -345,10 +341,14 @@
     <Content Include="Views\Home\PanelCliente_ListaCompras.cshtml" />
     <Content Include="Views\Home\Registrarse.cshtml" />
     <Content Include="Views\Home\OlvidemiContraseña.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Direcciones\Register.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BEUProyecto\BEUProyecto.csproj">
-      <Project>{0d6adbee-a924-49ba-8a5b-24e3b95d44f0}</Project>
+      <Project>{c1f521a7-9cc0-429e-9597-c2e8fddabb3f}</Project>
       <Name>BEUProyecto</Name>
     </ProjectReference>
   </ItemGroup>

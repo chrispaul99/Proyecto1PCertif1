@@ -22,8 +22,8 @@
     </Key>
     <Property Name="idDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="latitud" Type="float" Nullable="false" />
-    <Property Name="longitud" Type="float" Nullable="false" />
+    <Property Name="latitud" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="longitud" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="referencia" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="Forma_de_Pago">
@@ -79,7 +79,7 @@
     <Property Name="correo" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="rol" Type="nchar" MaxLength="1" Nullable="false" />
-    <Property Name="idDireccion" Type="int" Nullable="false" />
+    <Property Name="idDireccion" Type="int" />
   </EntityType>
   <EntityType Name="Producto">
     <Key>
@@ -192,7 +192,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Persona_Direccion">
-    <End Role="Direccion" Type="Self.Direccion" Multiplicity="1">
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Persona" Type="Self.Persona" Multiplicity="*" />

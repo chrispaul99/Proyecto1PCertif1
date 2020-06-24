@@ -16,6 +16,7 @@ namespace BEUProyecto.Transactions
                 {
                     try
                     {
+                        p.idDireccion = DireccionBLL.GetAdress(p.Direccion.longitud, p.Direccion.latitud).idDireccion;
                         db.Persona.Add(p);
                         db.SaveChanges();
                         transaction.Commit();
