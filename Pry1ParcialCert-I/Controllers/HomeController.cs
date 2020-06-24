@@ -1,6 +1,9 @@
-﻿using System;
+﻿using BEUProyecto;
+using BEUProyecto.Transactions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,13 +17,14 @@ namespace Pry1ParcialCert_I.Controllers
             return View("Home");
         }
 
-        public ActionResult Login()
+        public ActionResult Login(Persona persona)
         {
-            return View("Login");
-        }
-        public ActionResult Register(int? id)
-        {
-            return View("Registro");
+            PersonaBLL.ValidateLogin(persona);
+            if(PersonaBLL.ValidateLogin(persona))
+            {
+                return RedirectToAction("Index","Personas");
+            }
+            return View();
         }
     }
 }

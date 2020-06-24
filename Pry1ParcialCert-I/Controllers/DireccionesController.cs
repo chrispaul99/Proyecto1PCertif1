@@ -38,7 +38,7 @@ namespace Pry1ParcialCert_I.Controllers
         // GET: Direcciones/Create
         public ActionResult Register()
         {
-            return View();
+            return View("Register");
         }
 
         // POST: Direcciones/Create
@@ -48,12 +48,11 @@ namespace Pry1ParcialCert_I.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register([Bind(Include = "idDireccion,nombre,latitud,longitud,referencia")] Direccion direccion)
         {
-
             if (ModelState.IsValid)
             {
                 DireccionBLL.Create(direccion);
-               
-                return RedirectToAction("Register","Home",direccion.idDireccion);
+
+                return RedirectToAction("Register","Personas", new { id = direccion.idDireccion });
             }
 
             return View();
