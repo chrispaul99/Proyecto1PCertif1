@@ -339,10 +339,17 @@
     <Content Include="Views\Home\Comprobante.cshtml" />
     <Content Include="Views\Home\Ingresar.cshtml" />
     <Content Include="Views\Home\PanelCliente_ListaCompras.cshtml" />
+    <Content Include="Views\Home\Registrarse.cshtml" />
     <Content Include="Views\Home\OlvidemiContraseña.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Direcciones\Register.cshtml" />
-    <Content Include="Views\Personas\Register.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Negocios\PanelCliente_Inicio.cshtml" />
+    <Content Include="Views\Personas\PanelCliente_InfoUsuario.cshtml" />
+    <Content Include="Views\Pedidos\PanelCliente_Pedidos.cshtml" />
+    <Content Include="Views\Listas\PanelCliente_ListaCompras.cshtml" />
+    <Content Include="Views\Pedidos\Comprobante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BEUProyecto\BEUProyecto.csproj">
