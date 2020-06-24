@@ -11,7 +11,8 @@ namespace BEUProyecto
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Comerciante
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +20,17 @@ namespace BEUProyecto
         {
             this.Negocio = new HashSet<Negocio>();
         }
-    
+
+        [ScaffoldColumn(false)]
         public int idComerciante { get; set; }
+
+        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "La base legal es requerida."), MaxLength(55)]
+        [Display(Name = "Base Legal")]
         public string baseLegal { get; set; }
+
+      
+        [Display(Name = "Comerciante")]
         public int idPersona { get; set; }
     
         public virtual Persona Persona { get; set; }

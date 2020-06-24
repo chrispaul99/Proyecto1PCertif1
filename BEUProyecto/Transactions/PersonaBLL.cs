@@ -57,6 +57,20 @@ namespace BEUProyecto.Transactions
             }
         }
 
+        public static bool ValidateLogin(Persona persona)
+        {
+            Entities db = new Entities();
+            foreach(var item in db.Persona.ToList())
+            {
+                if(item.correo==persona.correo && item.password == persona.password)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
         public static void Delete(int? id)
         {
             using (Entities db = new Entities())

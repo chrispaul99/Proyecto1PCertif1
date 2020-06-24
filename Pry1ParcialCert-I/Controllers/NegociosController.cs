@@ -22,6 +22,11 @@ namespace Pry1ParcialCert_I.Controllers
             return View(NegocioBLL.List());
         }
 
+        public ActionResult PanelCliente_Inicio()
+        {
+            return View();
+        }
+
         // GET: Negocios/Details/5
         public ActionResult Details(int? id)
         {

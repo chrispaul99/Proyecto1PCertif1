@@ -11,11 +11,17 @@ namespace BEUProyecto
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Detalle
     {
+        [ScaffoldColumn(false)]
         public int idDetalle { get; set; }
+
+        [Display(Name = "Producto")]
         public int idProducto { get; set; }
+
+        [Display(Name = "Lista")]
         public int idLista { get; set; }
     
         public virtual Lista Lista { get; set; }
