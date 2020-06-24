@@ -11,7 +11,8 @@ namespace BEUProyecto
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Negocio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,17 +20,50 @@ namespace BEUProyecto
         {
             this.Producto = new HashSet<Producto>();
         }
-    
+
+        [ScaffoldColumn(false)]
         public int idNegocio { get; set; }
+
+        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "El nombre es requerido"), MaxLength(55)]
+        [Display(Name = "Nombre")]
         public string nombre { get; set; }
+
+        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "La categoría es requerida"), MaxLength(55)]
+        [Display(Name = "Categoría")]
         public string categoria { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Descripción")]
         public string descripcion { get; set; }
+
+        [DataType(DataType.Time)]
+        [Required(ErrorMessage = "EL horario es requerido")]
+        [Display(Name = "Horario")]
         public System.DateTime horario { get; set; }
+
+
+        [Display(Name = "Estado")]
         public bool estado { get; set; }
+
+        [Display(Name = "Imágen")]
         public string imagen { get; set; }
+
+
+        [Display(Name = "Delivery")]
         public bool delivery { get; set; }
+
+        
+        [Display(Name = "Reserva")]
         public bool reserva { get; set; }
+
+        
+        [Display(Name = "Dirección")]
         public int idDireccion { get; set; }
+
+        
+        [Display(Name = "Comerciante")]
         public int idComerciante { get; set; }
     
         public virtual Comerciante Comerciante { get; set; }
