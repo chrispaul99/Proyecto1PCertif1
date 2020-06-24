@@ -22,6 +22,11 @@ namespace Pry1ParcialCert_I.Controllers
             return View(PersonaBLL.List());
         }
 
+        public ActionResult PanelCliente_InfoUsuario()
+        {
+            return View();
+        }
+
         // GET: Personas/Details/5
         public ActionResult Details(int? id)
         {
