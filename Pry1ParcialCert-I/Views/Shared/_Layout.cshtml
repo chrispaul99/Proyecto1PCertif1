@@ -96,11 +96,13 @@
         </footer>
     </div>
     <div class="overlay"></div>
+
     @{ /*ORIGINAL
      @Scripts.Render("~/bundles/jquery")
      @Scripts.Render("~/bundles/bootstrap")
     }
     @{ /*EXTRAIDO*/}
+    @RenderSection("Scripts", required: false)
     @Scripts.Render("Scripts/js/jquery.min.js")
     @Scripts.Render("Scripts/js/popper.min.js")
     @Scripts.Render("Scripts/js/jquery.min.js")

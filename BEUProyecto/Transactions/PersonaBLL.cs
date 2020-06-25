@@ -100,10 +100,10 @@ namespace BEUProyecto.Transactions
         }
 
 
-        private static List<Persona> GetPersonas(string criterio)
+        public static List<Persona> GetId(string criterio)
         {
             Entities db = new Entities();
-            return db.Persona.Where(x => x.apellidos.ToLower().Contains(criterio)).ToList();
+            return db.Persona.Where(x => x.correo.ToLower().Contains(criterio)).ToList();
         }
 
         private static Persona GetPersona(string cedula)

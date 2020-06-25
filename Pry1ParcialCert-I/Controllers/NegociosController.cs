@@ -22,9 +22,21 @@ namespace Pry1ParcialCert_I.Controllers
             return View(NegocioBLL.List());
         }
 
-        public ActionResult PanelCliente_Inicio()
+        public ActionResult PanelCliente_Inicio(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Persona persona = PersonaBLL.Get(id);
+            if (persona == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = persona.idPersona;
+            ViewBag.nombres = persona.nombres;
+            ViewBag.lst = NegocioBLL.List();
+            return View("PanelCliente_Inicio");
         }
 
         // GET: Negocios/Details/5

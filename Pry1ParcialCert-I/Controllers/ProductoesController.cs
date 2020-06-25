@@ -20,6 +20,23 @@ namespace Pry1ParcialCert_I.Controllers
             return View(ProductoBLL.List());
         }
 
+        public ActionResult PanelCliente_Productos(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Persona persona = PersonaBLL.Get(id);
+            if (persona == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = persona.idPersona;
+            ViewBag.nombres = persona.nombres;
+            ViewBag.Lst = ProductoBLL.List();
+            return View("PanelCliente_Productos");
+        }
+
         // GET: Productoes/Details/5
         public ActionResult Details(int? id)
         {

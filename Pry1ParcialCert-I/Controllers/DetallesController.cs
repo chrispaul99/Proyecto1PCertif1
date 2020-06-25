@@ -48,10 +48,11 @@ namespace Pry1ParcialCert_I.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idDetalle,idProducto,idLista")] Detalle detalle)
+        public ActionResult Create([Bind(Include = "idDetalle,idProducto,idLista")] Detalle detalle, int id)
         {
             if (ModelState.IsValid)
             {
+                detalle.idProducto = id;
                 DetalleBLL.Create(detalle);
                 return RedirectToAction("Index");
             }

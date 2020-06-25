@@ -22,7 +22,15 @@ namespace Pry1ParcialCert_I.Controllers
             PersonaBLL.ValidateLogin(persona);
             if(PersonaBLL.ValidateLogin(persona))
             {
-                return RedirectToAction("Index","Personas");
+                //Validacion de contraseña
+                var idc = 0;
+                var idCliente = PersonaBLL.GetId(persona.correo);
+                foreach (var item in idCliente)
+                {
+                    idc = item.idPersona;
+                }
+
+                return RedirectToAction("PanelCliente_Inicio", "Negocios", new { id = idc });
             }
             return View();
         }

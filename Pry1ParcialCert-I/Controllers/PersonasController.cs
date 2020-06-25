@@ -22,6 +22,30 @@ namespace Pry1ParcialCert_I.Controllers
             return View(PersonaBLL.List());
         }
 
+        public ActionResult PanelCliente_InfoUsuario(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Persona persona = PersonaBLL.Get(id);
+            if (persona == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = persona.idPersona;
+            ViewBag.nombres = persona.nombres;
+            ViewBag.apellidos = persona.apellidos;
+            ViewBag.cedula = persona.cedula;
+            ViewBag.celular = persona.celular;
+            ViewBag.correo = persona.correo;
+            Direccion direccion = DireccionBLL.Get(persona.idDireccion);
+            ViewBag.lat = direccion.latitud;
+            ViewBag.lon = direccion.longitud;
+            ViewBag.dref = direccion.referencia;
+            return View("PanelCliente_InfoUsuario");
+        }
+
         // GET: Personas/Details/5
         public ActionResult Details(int? id)
         {

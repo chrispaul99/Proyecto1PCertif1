@@ -21,7 +21,7 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("Create", "Listas", FormMethod.Post, new { @class = "card card-md" })) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

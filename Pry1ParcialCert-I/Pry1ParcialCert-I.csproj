@@ -266,7 +266,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Detalles\Register.cshtml" />
+    <Content Include="Views\Detalles\Create.cshtml" />
     <Content Include="Views\Detalles\Delete.cshtml" />
     <Content Include="Views\Detalles\Details.cshtml" />
     <Content Include="Views\Detalles\Edit.cshtml" />
@@ -347,6 +347,7 @@
     <Content Include="Views\Listas\PanelCliente_ListaCompras.cshtml" />
     <Content Include="Views\Pedidos\Comprobante.cshtml" />
     <Content Include="Views\Personas\Register.cshtml" />
+    <Content Include="Views\Productoes\PanelCliente_Productos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BEUProyecto\BEUProyecto.csproj">

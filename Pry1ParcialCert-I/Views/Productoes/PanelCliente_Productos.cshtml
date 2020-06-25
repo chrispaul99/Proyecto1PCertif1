@@ -1,6 +1,6 @@
-﻿@model BEUProyecto.Pedido
+﻿
 @{
-    ViewBag.Title = "PanelCliente_Pedidos";
+    ViewBag.Title = "PanelCliente_Productos";
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
 }
 
@@ -74,55 +74,58 @@
     <div class="content">
 
         <div class="container-xl">
-            <!-- Page title -->
-            <div class="page-header">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <h2 class="page-title">
-                            Pedidos Realizados
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="list-group card-list-group">
-                            <div class="list-group-item">
-                                <div class="row row-sm align-items-center">
-                                    <div class="col-auto text-h3">
-                                        1
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="https://images.unsplash.com/photo-1516128043650-037fbdbd0b6e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" class="rounded" alt="Górą ty" width="48" height="48">
-                                    </div>
-                                    <div class="col">
-                                        Nombre del Negocio
-                                        <div class="text-muted">
-                                            Fecha del Pedido
+            <div class="row row-deck">
+
+                @foreach (var item in ViewBag.Lst)
+                {
+                    ViewBag.IdProd = item.idProducto;
+                    ViewBag.Imagen = item.imagen;
+                    ViewBag.Producto = item.nombre;
+                    ViewBag.Precio = item.precio;
+                    ViewBag.Stock = item.stock;
+                    ViewBag.Categoria = item.categoria;
+
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="card d-flex flex-column">
+                            <div class="row row-0 flex-fill">
+                                <div class="col-md-4">
+                                    <img src=@ViewBag.Imagen class="w-100 h-100 object-cover" alt="Card side image">
+                                </div>
+                                <div class="col">
+                                    <div class="card-body">
+                                        <h3 class="card-title">@ViewBag.Producto</h3>
+                                        <div class="text-muted">@ViewBag.Precio</div>
+                                        <div class="d-flex align-items-center pt-5 mt-auto">
+                                            <div class="ml-3">
+                                                <a href="#" class="text-body">Stock: @ViewBag.Stock</a>
+                                                <small class="d-block text-muted">Categoria: @ViewBag.Categoria</small>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <a href=@Url.Action("Create","Detalles", new {id=ViewBag.IdProd }) class="icon d-none d-md-inline-block ml-3 text-green" style="margin-bottom:15px">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><circle cx="12" cy="12" r="9"></circle><line x1="9" y1="12" x2="15" y2="12"></line><line x1="12" y1="9" x2="12" y2="15"></line></svg>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-auto text-muted">
-                                        Forma de Pago
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href=@Url.Action("PanelCliente_ListaCompras","Listas", new { id = ViewBag.id }) class="link-secondary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><circle cx="12" cy="12" r="2"></circle><path d="M2 12l1.5 2a11 11 0 0 0 17 0l1.5 -2"></path><path d="M2 12l1.5 -2a11 11 0 0 1 17 0l1.5 2"></path></svg>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href=@Url.Action("Comprobante","Pedidos", new { id = ViewBag.id }) class="link-secondary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><polyline points="14 3 14 8 19 8"></polyline><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path><line x1="9" y1="7" x2="10" y2="7"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="13" y1="17" x2="15" y2="17"></line></svg>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
+
+            </div>
+
+            <div class="d-flex float-left" style="margin-top:15px;">
+                <a href=@Url.Action("Create","Listas") class="btn btn-dark btn-pill btn-block">
+                    Armar Lista
+                </a>
+            </div>
+            <div class="d-flex float-left" style="margin-top:15px;">
+                <a href="#" class="btn btn-dark btn-pill btn-block">
+                    Enviar Lista
+                </a>
             </div>
         </div>
-
 
         <footer class="footer footer-transparent">
             <div class="container">
