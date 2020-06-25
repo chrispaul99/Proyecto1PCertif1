@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using BEUProyecto;
 using BEUProyecto.Transactions;
 using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace Pry1ParcialCert_I.Controllers
 {
@@ -27,28 +28,6 @@ namespace Pry1ParcialCert_I.Controllers
 
         public ActionResult PanelCliente_Inicio()
         {
-            return View();
-        }
-        public ActionResult ContactForm(Negocio negocio)
-        {
-            //Use Namespace called :  System.IO  
-            string FileName = Path.GetFileNameWithoutExtension(negocio.ImageFile.FileName);
-
-            //To Get File Extension  
-            string FileExtension = Path.GetExtension(negocio.ImageFile.FileName);
-
-            //Add Current Date To Attached File Name  
-            FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
-
-            //Get Upload path from Web.Config file AppSettings.  
-            string UploadPath = ConfigurationManager.AppSettings["UserImagePath"].ToString();
-
-            //Its Create complete path to store in server.  
-            negocio.imagen = UploadPath + FileName;
-
-            //To copy and save file into server.  
-            negocio.ImageFile.SaveAs(negocio.imagen);
-
             return View();
         }
         // GET: Negocios/Details/5

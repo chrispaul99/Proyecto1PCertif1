@@ -1,5 +1,9 @@
-﻿using System;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +20,13 @@ namespace BEUProyecto.Transactions
                 {
                     try
                     {
+                        Account account = new Account("dvjjvc5d6", "378624257943757", "V5KFa3uKUWpwCcok3g0n3pYyf4o");
+                        Cloudinary cloudinary = new Cloudinary(account);
+                        var uploadParams = new ImageUploadParams()
+                        {
+                            File = new FileDescription(c.imagen)
+                        };
+                        var uploadResult = cloudinary.Upload(uploadParams);
                         db.Negocio.Add(c);
                         db.SaveChanges();
                         transaction.Commit();
