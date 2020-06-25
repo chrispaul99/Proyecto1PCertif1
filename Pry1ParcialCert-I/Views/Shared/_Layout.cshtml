@@ -37,7 +37,7 @@
                             <div class="center-desk">
                                 <div class="logo">
                                     <a href='@Url.Action("Index", "Home")'>
-                                        <img src='@Url.Content("~/images/logo.svg")' />
+                                        <img src='@Url.Content("~/images/logo-black.svg")' />
                                     </a>
                                 </div>
                             </div>
@@ -96,13 +96,11 @@
         </footer>
     </div>
     <div class="overlay"></div>
-
     @{ /*ORIGINAL
      @Scripts.Render("~/bundles/jquery")
      @Scripts.Render("~/bundles/bootstrap")
     }
     @{ /*EXTRAIDO*/}
-    @RenderSection("Scripts", required: false)
     @Scripts.Render("Scripts/js/jquery.min.js")
     @Scripts.Render("Scripts/js/popper.min.js")
     @Scripts.Render("Scripts/js/jquery.min.js")

@@ -22,3 +22,7 @@ C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\BEUP
 C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\BEUProyecto\obj\Debug\BEUProyecto.csproj.CopyComplete
 C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\BEUProyecto\obj\Debug\BEUProyecto.dll
 C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\BEUProyecto\obj\Debug\BEUProyecto.pdb
+D:\ProyectoCert\Proyecto1PCertif1\BEUProyecto\bin\Debug\CloudinaryDotNet.dll
+D:\ProyectoCert\Proyecto1PCertif1\BEUProyecto\bin\Debug\System.Text.Encodings.Web.dll
+D:\ProyectoCert\Proyecto1PCertif1\BEUProyecto\bin\Debug\CloudinaryDotNet.xml
+D:\ProyectoCert\Proyecto1PCertif1\BEUProyecto\bin\Debug\System.Text.Encodings.Web.xml

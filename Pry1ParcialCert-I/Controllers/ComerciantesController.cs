@@ -13,6 +13,77 @@ namespace Pry1ParcialCert_I.Controllers
 {
     public class ComerciantesController : Controller
     {
+        public ActionResult PanelComerciante(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Persona persona = PersonaBLL.Get(id);
+            if (persona == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = persona.idPersona;
+            ViewBag.nombres = persona.nombres;
+            ViewBag.correo = persona.correo;
+            return View("PanelComerciante");
+        }
+        public ActionResult PanelNegocio(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Persona persona = PersonaBLL.Get(id);
+            if (persona == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = persona.idPersona;
+            ViewBag.nombres = persona.nombres;
+            ViewBag.correo = persona.correo;
+            return View("PanelNegocio");
+        }
+        public ActionResult PanelPedidos(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Persona persona = PersonaBLL.Get(id);
+            if (persona == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = persona.idPersona;
+            ViewBag.nombres = persona.nombres;
+            ViewBag.correo = persona.correo;
+            return View("PanelPedidos");
+        }
+        public ActionResult PanelDatos(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Persona persona = PersonaBLL.Get(id);
+            if (persona == null)
+            {
+                return HttpNotFound();
+            }
+            Direccion direccion = DireccionBLL.Get(persona.idDireccion);
+            ViewBag.id = persona.idPersona;
+            ViewBag.nombres = persona.nombres;
+            ViewBag.correo = persona.correo;
+            ViewBag.apellidos = persona.apellidos;
+            ViewBag.cedula = persona.cedula;
+            ViewBag.celular = persona.celular;
+            ViewBag.latitud = direccion.latitud;
+            ViewBag.longitud = direccion.longitud;
+            ViewBag.referencia = direccion.referencia;
+            return View("PanelInformacion");
+        }
         // GET: Comerciantes
         public ActionResult Index()
         {
@@ -36,9 +107,8 @@ namespace Pry1ParcialCert_I.Controllers
         }
 
         // GET: Comerciantes/Create
-        public ActionResult Create()
+        public ActionResult Register()
         {
-            ViewBag.idPersona = new SelectList(PersonaBLL.List(), "idPersona", "nombres");
             return View();
         }
 
@@ -47,15 +117,11 @@ namespace Pry1ParcialCert_I.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idComerciante,baseLegal,idPersona")] Comerciante comerciante)
+        public ActionResult Register([Bind(Include = "idComerciante,baseLegal,idPersona")] Comerciante comerciante,int id)
         {
-            if (ModelState.IsValid)
-            {
+                comerciante.idPersona = id;
                 ComercianteBLL.Create(comerciante);
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.idPersona = new SelectList(PersonaBLL.List(), "idPersona", "nombres", comerciante.idPersona);
+                return RedirectToAction("Login","Home");
             return View(comerciante);
         }
 

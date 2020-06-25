@@ -12,6 +12,7 @@ namespace BEUProyecto
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class Negocio
     {
@@ -47,8 +48,10 @@ namespace BEUProyecto
         [Display(Name = "Estado")]
         public bool estado { get; set; }
 
-        [Display(Name = "Imágen")]
+        [Display(Name = "Imagen")]
         public string imagen { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
 
 
         [Display(Name = "Delivery")]
