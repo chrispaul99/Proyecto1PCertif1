@@ -13,8 +13,6 @@ namespace Pry1ParcialCert_I.Controllers
 {
     public class PersonasController : Controller
     {
-        private Entities db = new Entities();
-
         // GET: Personas
         public ActionResult Index()
         {
@@ -88,11 +86,12 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 persona.idDireccion = id;
                 PersonaBLL.Create(persona);
-                return RedirectToAction("Index");
+                if (persona.rol == "N")
+                    return RedirectToAction("Register", "Comerciantes", new { id = persona.idPersona });
+                else
+                    return RedirectToAction("Login", "Home");
             }
-
-            ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre", persona.idDireccion);
-            return RedirectToAction("Register", "Home");
+            return RedirectToAction("Register", "Personas");
 
         }
 
@@ -108,7 +107,6 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre", persona.idDireccion);
             return View(persona);
         }
 
@@ -124,7 +122,6 @@ namespace Pry1ParcialCert_I.Controllers
                 PersonaBLL.Update(persona);
                 return RedirectToAction("Index");
             }
-            ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre", persona.idDireccion);
             return View(persona);
         }
 

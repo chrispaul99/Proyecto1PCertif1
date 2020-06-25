@@ -20,9 +20,10 @@ namespace Pry1ParcialCert_I.Controllers
         public ActionResult Login(Persona persona)
         {
             int idPer = PersonaBLL.ValidateLogin(persona);
+            Persona per = PersonaBLL.Get(idPer);
             if (PersonaBLL.ValidateLogin(persona) != 0)
             {
-                if(persona.rol=="N")
+                if(per.rol=="N")
                     return RedirectToAction("PanelComerciante", "Comerciantes", new { id = idPer });
                 else
                     return RedirectToAction("PanelCliente_InfoUsuario", "Personas", new { id = idPer });
