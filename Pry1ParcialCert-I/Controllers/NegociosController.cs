@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUProyecto;
 using BEUProyecto.Transactions;
+using CloudinaryDotNet;
 
 namespace Pry1ParcialCert_I.Controllers
 {
@@ -26,7 +29,28 @@ namespace Pry1ParcialCert_I.Controllers
         {
             return View();
         }
+        public ActionResult ContactForm(Negocio negocio)
+        {
+            //Use Namespace called :  System.IO  
+            string FileName = Path.GetFileNameWithoutExtension(negocio.ImageFile.FileName);
 
+            //To Get File Extension  
+            string FileExtension = Path.GetExtension(negocio.ImageFile.FileName);
+
+            //Add Current Date To Attached File Name  
+            FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
+
+            //Get Upload path from Web.Config file AppSettings.  
+            string UploadPath = ConfigurationManager.AppSettings["UserImagePath"].ToString();
+
+            //Its Create complete path to store in server.  
+            negocio.imagen = UploadPath + FileName;
+
+            //To copy and save file into server.  
+            negocio.ImageFile.SaveAs(negocio.imagen);
+
+            return View();
+        }
         // GET: Negocios/Details/5
         public ActionResult Details(int? id)
         {

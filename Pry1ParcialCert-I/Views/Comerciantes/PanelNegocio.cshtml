@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "PanelNegocio";
+    Layout = "~/Views/Shared/_LayoutPanelComerciante.cshtml";
+}
+    <a href='@Url.Action("Create", "Negocios")' class="btn btn-success">AÑADIR NEGOCIO</a>
+<div class="row mt-3">
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Nombre del Negocio</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <TR>
+                                <th scope="col">Nombre</th>
+                                <TD>Item 1</TD>
+                            </TR>
+                            <TR>
+                                <th scope="col">First</th>
+                                <TD>Item 1</TD>
+                            </TR>
+                            <TR>
+                                <th scope="col">Last</th>
+                                <TD>Item 1</TD>
+                            </TR>
+                            <TR>
+                                <th scope="col">Handle</th>
+                                <TD>Item 1</TD>
+                            </TR>
+                        </thead>
+                    </table>
+                </div>
+                <div id="btncrud">
+                    <a class="btn btn-info" href='@Url.Action("Index", "Productos")'>VER PRODUCTOS</a>
+                    <a href='@Url.Action("Edit", "Negocios")' class="btn btn-warning">EDITAR</a>
+                    <a href='@Url.Action("Delete", "Negocios")' class="btn btn-danger">ELIMINAR</a>
+                    <a href='@Url.Action("Index", "Home")' class="btn btn-dark" style="margin-top:5px">UBICACION</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

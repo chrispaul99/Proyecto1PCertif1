@@ -16,6 +16,7 @@ namespace BEUProyecto.Transactions
                 {
                     try
                     {
+                       
                         db.Persona.Add(p);
                         db.SaveChanges();
                         transaction.Commit();
@@ -28,7 +29,16 @@ namespace BEUProyecto.Transactions
                 }
             }
         }
-
+        public static void GetRol(Persona p)
+        {
+            if (p.rol == "N")
+            {
+                Comerciante cor = new Comerciante();
+                cor.idPersona = p.idPersona;
+                cor.baseLegal = " ";
+                ComercianteBLL.Create(cor);
+            }
+        }
         public static Persona Get(int? id)
         {
             Entities db = new Entities();
@@ -57,17 +67,17 @@ namespace BEUProyecto.Transactions
             }
         }
 
-        public static bool ValidateLogin(Persona persona)
+        public static int ValidateLogin(Persona persona)
         {
             Entities db = new Entities();
             foreach(var item in db.Persona.ToList())
             {
                 if(item.correo==persona.correo && item.password == persona.password)
                 {
-                    return true;
+                    return item.idPersona;
                 }
             }
-            return false;
+            return 0;
 
         }
 

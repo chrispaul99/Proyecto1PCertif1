@@ -50,7 +50,6 @@ namespace Pry1ParcialCert_I.Controllers
                 return HttpNotFound();
             }
             return View();
-            //return RedirectToAction("Register","Home");
         }
 
         // POST: Personas/Create
@@ -64,11 +63,13 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 persona.idDireccion = id;
                 PersonaBLL.Create(persona);
-                return RedirectToAction("Index");
+                if(persona.rol=="N")
+                    return RedirectToAction("Register", "Comerciantes", new { id = persona.idPersona });
+                else
+                    return RedirectToAction("Login", "Home");
             }
-
             ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre", persona.idDireccion);
-            return RedirectToAction("Register", "Home");
+            return RedirectToAction("Register", "Personas");
 
         }
 
