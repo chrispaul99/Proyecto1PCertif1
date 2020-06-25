@@ -188,3 +188,7 @@ D:\ProyectoCert\Proyecto1PCertif1\Pry1ParcialCert-I\bin\CloudinaryDotNet.dll
 D:\ProyectoCert\Proyecto1PCertif1\Pry1ParcialCert-I\bin\System.Text.Encodings.Web.dll
 D:\ProyectoCert\Proyecto1PCertif1\Pry1ParcialCert-I\bin\CloudinaryDotNet.xml
 D:\ProyectoCert\Proyecto1PCertif1\Pry1ParcialCert-I\bin\System.Text.Encodings.Web.xml
+C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\Pry1ParcialCert-I\bin\CloudinaryDotNet.dll
+C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\Pry1ParcialCert-I\bin\System.Text.Encodings.Web.dll
+C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\Pry1ParcialCert-I\bin\CloudinaryDotNet.xml
+C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\Pry1ParcialCert-I\bin\System.Text.Encodings.Web.xml

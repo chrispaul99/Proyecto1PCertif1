@@ -26,3 +26,7 @@ D:\ProyectoCert\Proyecto1PCertif1\BEUProyecto\bin\Debug\CloudinaryDotNet.dll
 D:\ProyectoCert\Proyecto1PCertif1\BEUProyecto\bin\Debug\System.Text.Encodings.Web.dll
 D:\ProyectoCert\Proyecto1PCertif1\BEUProyecto\bin\Debug\CloudinaryDotNet.xml
 D:\ProyectoCert\Proyecto1PCertif1\BEUProyecto\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\BEUProyecto\bin\Debug\CloudinaryDotNet.dll
+C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\BEUProyecto\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\BEUProyecto\bin\Debug\CloudinaryDotNet.xml
+C:\Users\USER\Desktop\Programas Mauro\RepositorioTemporal\Proyecto1PCertif1\BEUProyecto\bin\Debug\System.Text.Encodings.Web.xml

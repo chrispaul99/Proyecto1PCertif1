@@ -26,7 +26,7 @@ namespace Pry1ParcialCert_I.Controllers
                 if(per.rol=="N")
                     return RedirectToAction("PanelComerciante", "Comerciantes", new { id = idPer });
                 else
-                    return RedirectToAction("PanelCliente_InfoUsuario", "Personas", new { id = idPer });
+                    return RedirectToAction("PanelCliente_Inicio", "Negocios", new { id = idPer });
             }
             return View();
         }
