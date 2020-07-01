@@ -34,11 +34,19 @@ namespace Pry1ParcialCert_I.Controllers
             }
             return View(direccion);
         }
-
-        // GET: Direcciones/Create
-        public ActionResult Create()
+        public ActionResult CreateNegocio(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comerciante comerciante = ComercianteBLL.Get(id);
+            if (comerciante == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = comerciante.idComerciante;
+            return View("CreateNegocio");
         }
 
         // POST: Direcciones/Create
@@ -46,15 +54,38 @@ namespace Pry1ParcialCert_I.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idDireccion,nombre,latitud,longitud,referencia")] Direccion direccion)
+        public ActionResult CreateNegocio([Bind(Include = "idDireccion,nombre,latitud,longitud,referencia")] Direccion direccion,int? id)
         {
             if (ModelState.IsValid)
             {
                 DireccionBLL.Create(direccion);
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Negocios", new { id = direccion.idDireccion, id2=id});
+
             }
 
-            return View(direccion);
+            return View();
+        }
+        // GET: Direcciones/Create
+        public ActionResult Register()
+        {
+            return View("Register");
+        }
+
+        // POST: Direcciones/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register([Bind(Include = "idDireccion,nombre,latitud,longitud,referencia")] Direccion direccion)
+        {
+            if (ModelState.IsValid)
+            {
+                DireccionBLL.Create(direccion);
+                return RedirectToAction("Register", "Personas", new { id = direccion.idDireccion });
+               
+            }
+
+            return View();
         }
 
         // GET: Direcciones/Edit/5

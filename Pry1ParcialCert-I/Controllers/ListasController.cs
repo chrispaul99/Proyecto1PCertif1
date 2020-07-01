@@ -22,6 +22,23 @@ namespace Pry1ParcialCert_I.Controllers
             return View(ListaBLL.List());
         }
 
+        public ActionResult PanelCliente_ListaCompras(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Persona persona = PersonaBLL.Get(id);
+            if (persona == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = persona.idPersona;
+            ViewBag.nombres = persona.nombres;
+            //ViewBag
+            return View("PanelCliente_ListaCompras");
+        }
+
         // GET: Listas/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,7 +53,6 @@ namespace Pry1ParcialCert_I.Controllers
             }
             return View(lista);
         }
-
         // GET: Listas/Create
         public ActionResult Create()
         {
@@ -48,12 +64,12 @@ namespace Pry1ParcialCert_I.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idLista,totalPagar")] Lista lista)
+        public ActionResult Create([Bind(Include = "idLista,totalPagar")] Lista lista, int? id1)
         {
             if (ModelState.IsValid)
             {
                 ListaBLL.Create(lista);
-                return RedirectToAction("Index");
+                return RedirectToAction("PanelCliente_Productos","Productoes", new { id = id1 });
             }
 
             return View(lista);

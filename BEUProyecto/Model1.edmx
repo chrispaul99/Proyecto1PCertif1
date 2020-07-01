@@ -4,13 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DBPEDIDOSTIENDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comerciante">
           <Key>
             <PropertyRef Name="idComerciante" />
           </Key>
           <Property Name="idComerciante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="baseLegal" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="baseLegal" Type="varchar" MaxLength="100" />
           <Property Name="idPersona" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Detalle">
@@ -19,7 +19,7 @@
           </Key>
           <Property Name="idDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idProducto" Type="int" Nullable="false" />
-          <Property Name="idLista" Type="int" Nullable="false" />
+          <Property Name="idLista" Type="int" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -27,8 +27,8 @@
           </Key>
           <Property Name="idDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="latitud" Type="float" Nullable="false" />
-          <Property Name="longitud" Type="float" Nullable="false" />
+          <Property Name="latitud" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="longitud" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="referencia" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Forma_de_Pago">
@@ -43,7 +43,7 @@
             <PropertyRef Name="idLista" />
           </Key>
           <Property Name="idLista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="totalPagar" Type="decimal" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="totalPagar" Type="decimal" Precision="6" Scale="4" />
         </EntityType>
         <EntityType Name="Negocio">
           <Key>
@@ -53,9 +53,9 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="categoria" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="horario" Type="date" Nullable="false" />
+          <Property Name="horario" Type="varchar" MaxLength="100" />
           <Property Name="estado" Type="bit" Nullable="false" />
-          <Property Name="imagen" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="imagen" Type="image" />
           <Property Name="delivery" Type="bit" Nullable="false" />
           <Property Name="reserva" Type="bit" Nullable="false" />
           <Property Name="idDireccion" Type="int" Nullable="false" />
@@ -84,7 +84,7 @@
           <Property Name="correo" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="rol" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="idDireccion" Type="int" Nullable="false" />
+          <Property Name="idDireccion" Type="int" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -97,7 +97,7 @@
           <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="stock" Type="int" Nullable="false" />
           <Property Name="disponibilidad" Type="bit" Nullable="false" />
-          <Property Name="imagen" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="imagen" Type="image" Nullable="false" />
           <Property Name="idNegocio" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Comerciante_Persona">
@@ -115,7 +115,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle_Lista">
-          <End Role="Lista" Type="Self.Lista" Multiplicity="1">
+          <End Role="Lista" Type="Self.Lista" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
@@ -197,7 +197,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Persona_Direccion">
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
@@ -224,7 +224,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ModelStoreContainer">
+        <EntityContainer Name="DBPEDIDOSTIENDAModelStoreContainer">
           <EntitySet Name="Comerciante" EntityType="Self.Comerciante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detalle" EntityType="Self.Detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
@@ -275,13 +275,13 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DBPEDIDOSTIENDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Comerciante">
           <Key>
             <PropertyRef Name="idComerciante" />
           </Key>
           <Property Name="idComerciante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="baseLegal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="baseLegal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="idPersona" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Comerciante_Persona" FromRole="Comerciante" ToRole="Persona" />
           <NavigationProperty Name="Negocio" Relationship="Self.FK_Negocio_Comerciante" FromRole="Comerciante" ToRole="Negocio" />
@@ -292,7 +292,7 @@
           </Key>
           <Property Name="idDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idProducto" Type="Int32" Nullable="false" />
-          <Property Name="idLista" Type="Int32" Nullable="false" />
+          <Property Name="idLista" Type="Int32" />
           <NavigationProperty Name="Lista" Relationship="Self.FK_Detalle_Lista" FromRole="Detalle" ToRole="Lista" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Detalle_Producto" FromRole="Detalle" ToRole="Producto" />
         </EntityType>
@@ -302,8 +302,8 @@
           </Key>
           <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="latitud" Type="Double" Nullable="false" />
-          <Property Name="longitud" Type="Double" Nullable="false" />
+          <Property Name="latitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="longitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="referencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Negocio" Relationship="Self.FK_Negocio_Direccion" FromRole="Direccion" ToRole="Negocio" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_Direccion" FromRole="Direccion" ToRole="Persona" />
@@ -321,7 +321,7 @@
             <PropertyRef Name="idLista" />
           </Key>
           <Property Name="idLista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="totalPagar" Type="Decimal" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="totalPagar" Type="Decimal" Precision="6" Scale="4" />
           <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Lista" FromRole="Lista" ToRole="Detalle" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Lista" FromRole="Lista" ToRole="Pedido" />
         </EntityType>
@@ -333,9 +333,9 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="horario" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="horario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
-          <Property Name="imagen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="delivery" Type="Boolean" Nullable="false" />
           <Property Name="reserva" Type="Boolean" Nullable="false" />
           <Property Name="idDireccion" Type="Int32" Nullable="false" />
@@ -369,7 +369,7 @@
           <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rol" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="idDireccion" Type="Int32" Nullable="false" />
+          <Property Name="idDireccion" Type="Int32" />
           <NavigationProperty Name="Comerciante" Relationship="Self.FK_Comerciante_Persona" FromRole="Persona" ToRole="Comerciante" />
           <NavigationProperty Name="Direccion" Relationship="Self.FK_Persona_Direccion" FromRole="Persona" ToRole="Direccion" />
         </EntityType>
@@ -384,7 +384,7 @@
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="stock" Type="Int32" Nullable="false" />
           <Property Name="disponibilidad" Type="Boolean" Nullable="false" />
-          <Property Name="imagen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="idNegocio" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Producto" FromRole="Producto" ToRole="Detalle" />
           <NavigationProperty Name="Negocio" Relationship="Self.FK_Producto_Negocio" FromRole="Producto" ToRole="Negocio" />
@@ -418,7 +418,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle_Lista">
-          <End Role="Lista" Type="Self.Lista" Multiplicity="1">
+          <End Role="Lista" Type="Self.Lista" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
@@ -458,7 +458,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Persona_Direccion">
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
@@ -565,9 +565,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="DBPEDIDOSTIENDAModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Comerciante">
-            <EntityTypeMapping TypeName="Model.Comerciante">
+            <EntityTypeMapping TypeName="DBPEDIDOSTIENDAModel.Comerciante">
               <MappingFragment StoreEntitySet="Comerciante">
                 <ScalarProperty Name="idComerciante" ColumnName="idComerciante" />
                 <ScalarProperty Name="baseLegal" ColumnName="baseLegal" />
@@ -576,7 +576,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Detalle">
-            <EntityTypeMapping TypeName="Model.Detalle">
+            <EntityTypeMapping TypeName="DBPEDIDOSTIENDAModel.Detalle">
               <MappingFragment StoreEntitySet="Detalle">
                 <ScalarProperty Name="idDetalle" ColumnName="idDetalle" />
                 <ScalarProperty Name="idProducto" ColumnName="idProducto" />
@@ -585,7 +585,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Direccion">
-            <EntityTypeMapping TypeName="Model.Direccion">
+            <EntityTypeMapping TypeName="DBPEDIDOSTIENDAModel.Direccion">
               <MappingFragment StoreEntitySet="Direccion">
                 <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -596,7 +596,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Forma_de_Pago">
-            <EntityTypeMapping TypeName="Model.Forma_de_Pago">
+            <EntityTypeMapping TypeName="DBPEDIDOSTIENDAModel.Forma_de_Pago">
               <MappingFragment StoreEntitySet="Forma_de_Pago">
                 <ScalarProperty Name="idFormaPago" ColumnName="idFormaPago" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
@@ -604,7 +604,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lista">
-            <EntityTypeMapping TypeName="Model.Lista">
+            <EntityTypeMapping TypeName="DBPEDIDOSTIENDAModel.Lista">
               <MappingFragment StoreEntitySet="Lista">
                 <ScalarProperty Name="idLista" ColumnName="idLista" />
                 <ScalarProperty Name="totalPagar" ColumnName="totalPagar" />
@@ -612,7 +612,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Negocio">
-            <EntityTypeMapping TypeName="Model.Negocio">
+            <EntityTypeMapping TypeName="DBPEDIDOSTIENDAModel.Negocio">
               <MappingFragment StoreEntitySet="Negocio">
                 <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -629,7 +629,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pedido">
-            <EntityTypeMapping TypeName="Model.Pedido">
+            <EntityTypeMapping TypeName="DBPEDIDOSTIENDAModel.Pedido">
               <MappingFragment StoreEntitySet="Pedido">
                 <ScalarProperty Name="idPedido" ColumnName="idPedido" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -641,7 +641,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Persona">
-            <EntityTypeMapping TypeName="Model.Persona">
+            <EntityTypeMapping TypeName="DBPEDIDOSTIENDAModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
                 <ScalarProperty Name="idPersona" ColumnName="idPersona" />
                 <ScalarProperty Name="nombres" ColumnName="nombres" />
@@ -656,7 +656,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
-            <EntityTypeMapping TypeName="Model.Producto">
+            <EntityTypeMapping TypeName="DBPEDIDOSTIENDAModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
                 <ScalarProperty Name="idProducto" ColumnName="idProducto" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />

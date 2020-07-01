@@ -13,13 +13,35 @@ namespace Pry1ParcialCert_I.Controllers
 {
     public class PersonasController : Controller
     {
-        private Entities db = new Entities();
-
         // GET: Personas
         public ActionResult Index()
         {
             ViewBag.title = "LISTADO DE PERSONAS REGISTRADAS";
             return View(PersonaBLL.List());
+        }
+
+        public ActionResult PanelCliente_InfoUsuario(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Persona persona = PersonaBLL.Get(id);
+            if (persona == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id = persona.idPersona;
+            ViewBag.nombres = persona.nombres;
+            ViewBag.apellidos = persona.apellidos;
+            ViewBag.cedula = persona.cedula;
+            ViewBag.celular = persona.celular;
+            ViewBag.correo = persona.correo;
+            Direccion direccion = DireccionBLL.Get(persona.idDireccion);
+            ViewBag.lat = direccion.latitud;
+            ViewBag.lon = direccion.longitud;
+            ViewBag.dref = direccion.referencia;
+            return View("PanelCliente_InfoUsuario");
         }
 
         // GET: Personas/Details/5
@@ -38,10 +60,19 @@ namespace Pry1ParcialCert_I.Controllers
         }
 
         // GET: Personas/Create
-        public ActionResult Create()
+        public ActionResult Register(int? id)
         {
-            ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Direccion direccion = DireccionBLL.Get(id);
+            if (direccion == null)
+            {
+                return HttpNotFound();
+            }
             return View();
+            //return RedirectToAction("Register","Home");
         }
 
         // POST: Personas/Create
@@ -49,16 +80,19 @@ namespace Pry1ParcialCert_I.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idPersona,nombres,apellidos,cedula,celular,correo,password,rol,idDireccion")] Persona persona)
+        public ActionResult Register([Bind(Include = "idPersona,nombres,apellidos,cedula,celular,correo,password,rol,idDireccion")] Persona persona, int? id)
         {
             if (ModelState.IsValid)
             {
+                persona.idDireccion = id;
                 PersonaBLL.Create(persona);
-                return RedirectToAction("Index");
+                if (persona.rol == "N")
+                    return RedirectToAction("Register", "Comerciantes", new { id = persona.idPersona });
+                else
+                    return RedirectToAction("Login", "Home");
             }
+            return RedirectToAction("Register", "Personas");
 
-            ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre", persona.idDireccion);
-            return View(persona);
         }
 
         // GET: Personas/Edit/5
@@ -73,7 +107,6 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre", persona.idDireccion);
             return View(persona);
         }
 
@@ -89,7 +122,6 @@ namespace Pry1ParcialCert_I.Controllers
                 PersonaBLL.Update(persona);
                 return RedirectToAction("Index");
             }
-            ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre", persona.idDireccion);
             return View(persona);
         }
 

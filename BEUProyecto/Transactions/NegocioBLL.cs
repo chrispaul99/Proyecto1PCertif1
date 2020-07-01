@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BEUProyecto.Transactions
 {
@@ -34,7 +37,6 @@ namespace BEUProyecto.Transactions
             Entities db = new Entities();
             return db.Negocio.Find(id);
         }
-
         public static void Update(Negocio Negocio)
         {
             using (Entities db = new Entities())

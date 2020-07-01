@@ -1,6 +1,9 @@
-﻿using System;
+﻿using BEUProyecto;
+using BEUProyecto.Transactions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,20 +13,24 @@ namespace Pry1ParcialCert_I.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            ViewBag.title = "MI VECI";
+            return View("Home");
         }
 
-        public ActionResult About()
+        public ActionResult Login(Persona persona)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+            int idPer = PersonaBLL.ValidateLogin(persona);
+            Persona per = PersonaBLL.Get(idPer);
+            if (PersonaBLL.ValidateLogin(persona) != 0)
+            {
+                if (per.rol == "N")
+                {
+                    Comerciante comerciante = ComercianteBLL.GetComerciante(idPer);
+                    return RedirectToAction("PanelComerciante", "Comerciantes", new { id = comerciante.idComerciante });
+                }
+                else
+                    return RedirectToAction("PanelCliente_Inicio", "Negocios", new { id = idPer });
+            }
             return View();
         }
     }

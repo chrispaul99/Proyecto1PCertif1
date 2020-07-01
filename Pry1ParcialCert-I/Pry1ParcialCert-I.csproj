@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CloudinaryDotNet, Version=1.11.0.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
+      <HintPath>packages\CloudinaryDotNet.1.11.0\lib\net45\CloudinaryDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -56,6 +59,14 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,34 +138,181 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ComerciantesController.cs" />
+    <Compile Include="Controllers\DetallesController.cs" />
+    <Compile Include="Controllers\DireccionesController.cs" />
+    <Compile Include="Controllers\Forma_de_PagoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListasController.cs" />
+    <Compile Include="Controllers\NegociosController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
+    <Compile Include="Controllers\PersonasController.cs" />
+    <Compile Include="Controllers\ProductoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cssCliente\demo.min.css" />
+    <Content Include="Content\cssCliente\jqvmap.min.css" />
+    <Content Include="Content\cssCliente\tabler.min.css" />
+    <Content Include="Content\cssComerciante\animate.css" />
+    <Content Include="Content\cssComerciante\app-style.css" />
+    <Content Include="Content\cssComerciante\bootstrap.css" />
+    <Content Include="Content\cssComerciante\bootstrap.min.css" />
+    <Content Include="Content\cssComerciante\icons.css" />
+    <Content Include="Content\cssComerciante\pace.min.css" />
+    <Content Include="Content\cssComerciante\sidebar-menu.css" />
+    <Content Include="Content\css\animate.min.css" />
+    <Content Include="Content\css\bootstrap-grid.css" />
+    <Content Include="Content\css\bootstrap-grid.min.css" />
+    <Content Include="Content\css\bootstrap-reboot.css" />
+    <Content Include="Content\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\default-skin.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\icomoon.css" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\jquery.fancybox.min.css" />
+    <Content Include="Content\css\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\css\meanmenu.css" />
+    <Content Include="Content\css\nice-select.css" />
+    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\css\owl.carousel.min.css" />
+    <Content Include="Content\css\responsive.css" />
+    <Content Include="Content\css\slick.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\line-awesome.svg" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Content\fonts\themify.svg" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.svg" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\css\.DS_Store" />
+    <Content Include="Content\css\bootstrap-grid.css.map" />
+    <Content Include="Content\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="fonts\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fonts\FontAwesome.otf" />
+    <Content Include="fonts\fonts\IcoMoon-Free.ttf" />
+    <Content Include="fonts\fonts\Poppins-Black.ttf" />
+    <Content Include="fonts\fonts\Poppins-BlackItalic.ttf" />
+    <Content Include="fonts\fonts\Poppins-Bold.ttf" />
+    <Content Include="fonts\fonts\Poppins-BoldItalic.ttf" />
+    <Content Include="fonts\fonts\Poppins-ExtraBold.ttf" />
+    <Content Include="fonts\fonts\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="fonts\fonts\Poppins-ExtraLight.ttf" />
+    <Content Include="fonts\fonts\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="fonts\fonts\Poppins-Italic.ttf" />
+    <Content Include="fonts\fonts\Poppins-Light.ttf" />
+    <Content Include="fonts\fonts\Poppins-LightItalic.ttf" />
+    <Content Include="fonts\fonts\Poppins-Medium.ttf" />
+    <Content Include="fonts\fonts\Poppins-MediumItalic.ttf" />
+    <Content Include="fonts\fonts\Poppins-Regular.ttf" />
+    <Content Include="fonts\fonts\Poppins-SemiBold.ttf" />
+    <Content Include="fonts\fonts\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="fonts\fonts\Poppins-Thin.ttf" />
+    <Content Include="fonts\fonts\Poppins-ThinItalic.ttf" />
+    <Content Include="images\about_img.jpg" />
+    <Content Include="images\admin.png" />
+    <Content Include="images\banner.jpg" />
+    <Content Include="images\bg-themes\1.png" />
+    <Content Include="images\bg-themes\2.png" />
+    <Content Include="images\bg-themes\3.png" />
+    <Content Include="images\bg-themes\4.png" />
+    <Content Include="images\bg-themes\5.png" />
+    <Content Include="images\bg-themes\6.png" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\fondo_logo.svg" />
+    <Content Include="images\fonts\fontawesome-webfont.svg" />
+    <Content Include="images\fonts\line-awesome.svg" />
+    <Content Include="images\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="images\fonts\Simple-Line-Icons.svg" />
+    <Content Include="images\fonts\themify.svg" />
+    <Content Include="images\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="images\gallery\cd-icon-navigation.svg" />
+    <Content Include="images\img2.png" />
+    <Content Include="images\logo-black.svg" />
+    <Content Include="images\logo.svg" />
+    <Content Include="images\map.jpg" />
+    <Content Include="images\mapbox-icon.png" />
+    <Content Include="images\menu_icon.png" />
+    <Content Include="images\profile.png" />
+    <Content Include="images\slider1.svg" />
+    <Content Include="images\slider2.svg" />
+    <Content Include="images\slider3.svg" />
+    <Content Include="images\timeline\angular-icon.svg" />
+    <Content Include="images\timeline\bootstrap-4.svg" />
+    <Content Include="images\timeline\cd-arrow.svg" />
+    <Content Include="images\timeline\cd-icon-location.svg" />
+    <Content Include="images\timeline\cd-icon-movie.svg" />
+    <Content Include="images\timeline\cd-icon-picture.svg" />
+    <Content Include="images\timeline\css-3.svg" />
+    <Content Include="images\timeline\html5.svg" />
+    <Content Include="images\timeline\react.svg" />
+    <Content Include="images\user.svg" />
+    <Content Include="images\why.jpg" />
+    <Content Include="images\work_img.jpg" />
+    <Content Include="Scripts\jsCliente\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\jsCliente\tabler.min.js" />
+    <Content Include="Scripts\jsComerciante\app-script.js" />
+    <Content Include="Scripts\jsComerciante\bootstrap.js" />
+    <Content Include="Scripts\jsComerciante\bootstrap.min.js" />
+    <Content Include="Scripts\jsComerciante\index.js" />
+    <Content Include="Scripts\jsComerciante\jquery.min.js" />
+    <Content Include="Scripts\jsComerciante\pace.min.js" />
+    <Content Include="Scripts\jsComerciante\popper.min.js" />
+    <Content Include="Scripts\jsComerciante\sidebar-menu.js" />
+    <Content Include="Scripts\js\bootstrap.bundle.js" />
+    <Content Include="Scripts\js\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\js\bootstrap.js" />
+    <Content Include="Scripts\js\bootstrap.min.js" />
+    <Content Include="Scripts\js\custom.js" />
+    <Content Include="Scripts\js\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\js\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Scripts\js\jquery.min.js" />
+    <Content Include="Scripts\js\jquery.validate.js" />
+    <Content Include="Scripts\js\modernizer.js" />
+    <Content Include="Scripts\js\plugin.js" />
+    <Content Include="Scripts\js\popper.min.js" />
+    <Content Include="Scripts\js\revolution\assets\coloredbg.png" />
+    <Content Include="Scripts\js\revolution\assets\gridtile.png" />
+    <Content Include="Scripts\js\revolution\assets\gridtile_3x3.png" />
+    <Content Include="Scripts\js\revolution\assets\gridtile_3x3_white.png" />
+    <Content Include="Scripts\js\revolution\assets\gridtile_white.png" />
+    <Content Include="Scripts\js\revolution\assets\loader.gif" />
+    <Content Include="Scripts\js\revolution\css\closedhand.html" />
+    <Content Include="Scripts\js\revolution\css\layers.css" />
+    <Content Include="Scripts\js\revolution\css\navigation.css" />
+    <Content Include="Scripts\js\revolution\css\openhand.html" />
+    <Content Include="Scripts\js\revolution\css\settings.css" />
+    <Content Include="Scripts\js\revolution\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
+    <Content Include="Scripts\js\revolution\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-strokebb1d.svg" />
+    <Content Include="Scripts\js\revolution\fonts\revicons\revicons90c6.svg" />
+    <Content Include="Scripts\js\revolution\js\extensions\revolution.extension.actions.min.js" />
+    <Content Include="Scripts\js\revolution\js\extensions\revolution.extension.carousel.min.js" />
+    <Content Include="Scripts\js\revolution\js\extensions\revolution.extension.kenburn.min.js" />
+    <Content Include="Scripts\js\revolution\js\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="Scripts\js\revolution\js\extensions\revolution.extension.migration.min.js" />
+    <Content Include="Scripts\js\revolution\js\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="Scripts\js\revolution\js\extensions\revolution.extension.parallax.min.js" />
+    <Content Include="Scripts\js\revolution\js\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="Scripts\js\revolution\js\extensions\revolution.extension.video.min.js" />
+    <Content Include="Scripts\js\revolution\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Scripts\js\revolution\js\jquery.themepunch.tools.min.js" />
+    <Content Include="Scripts\js\slider-setting.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -164,22 +322,11 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Detalles\Create.cshtml" />
     <Content Include="Views\Detalles\Delete.cshtml" />
     <Content Include="Views\Detalles\Details.cshtml" />
     <Content Include="Views\Detalles\Edit.cshtml" />
     <Content Include="Views\Detalles\Index.cshtml" />
-    <Content Include="Views\Comerciantes\Create.cshtml" />
-    <Content Include="Views\Comerciantes\Delete.cshtml" />
-    <Content Include="Views\Comerciantes\Details.cshtml" />
-    <Content Include="Views\Comerciantes\Edit.cshtml" />
-    <Content Include="Views\Comerciantes\Index.cshtml" />
-    <Content Include="Views\Direcciones\Create.cshtml" />
     <Content Include="Views\Direcciones\Delete.cshtml" />
     <Content Include="Views\Direcciones\Details.cshtml" />
     <Content Include="Views\Direcciones\Edit.cshtml" />
@@ -194,11 +341,6 @@
     <Content Include="Views\Listas\Details.cshtml" />
     <Content Include="Views\Listas\Edit.cshtml" />
     <Content Include="Views\Listas\Index.cshtml" />
-    <Content Include="Views\Negocios\Create.cshtml" />
-    <Content Include="Views\Negocios\Delete.cshtml" />
-    <Content Include="Views\Negocios\Details.cshtml" />
-    <Content Include="Views\Negocios\Edit.cshtml" />
-    <Content Include="Views\Negocios\Index.cshtml" />
     <Content Include="Views\Pedidos\Create.cshtml" />
     <Content Include="Views\Pedidos\Delete.cshtml" />
     <Content Include="Views\Pedidos\Details.cshtml" />
@@ -214,27 +356,115 @@
     <Content Include="Views\Productoes\Details.cshtml" />
     <Content Include="Views\Productoes\Edit.cshtml" />
     <Content Include="Views\Productoes\Index.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Scripts\js\.DS_Store" />
+    <Content Include="Scripts\js\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\js\bootstrap.js.map" />
+    <Content Include="Scripts\js\bootstrap.min.js.map" />
+    <Content Include="Scripts\js\revolution\.DS_Store" />
+    <Content Include="Scripts\js\revolution\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-strokebb1d.eot" />
+    <Content Include="Scripts\js\revolution\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-strokebb1d.ttf" />
+    <Content Include="Scripts\js\revolution\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-strokebb1d.woff" />
+    <Content Include="Scripts\js\revolution\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroked41d.eot" />
+    <Content Include="Scripts\js\revolution\fonts\revicons\revicons90c6.eot" />
+    <Content Include="Scripts\js\revolution\fonts\revicons\revicons90c6.ttf" />
+    <Content Include="Scripts\js\revolution\fonts\revicons\revicons90c6.woff" />
+    <Content Include="Scripts\js\revolution\js\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="images\.DS_Store" />
+    <Content Include="images\fonts\fontawesome-webfont.eot" />
+    <Content Include="images\fonts\fontawesome-webfont.ttf" />
+    <Content Include="images\fonts\fontawesome-webfont.woff" />
+    <Content Include="images\fonts\fontawesome-webfont.woff2" />
+    <Content Include="images\fonts\FontAwesome.otf" />
+    <Content Include="images\fonts\line-awesome.eot" />
+    <Content Include="images\fonts\line-awesome.ttf" />
+    <Content Include="images\fonts\line-awesome.woff" />
+    <Content Include="images\fonts\line-awesome.woff2" />
+    <Content Include="images\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="images\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="images\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="images\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="images\fonts\Simple-Line-Icons.eot" />
+    <Content Include="images\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="images\fonts\Simple-Line-Icons.woff" />
+    <Content Include="images\fonts\Simple-Line-Icons.woff2" />
+    <Content Include="images\fonts\themify.eot" />
+    <Content Include="images\fonts\themify.ttf" />
+    <Content Include="images\fonts\themify.woff" />
+    <Content Include="images\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="images\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="images\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="images\fonts\weathericons-regular-webfont.woff2" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\line-awesome.eot" />
+    <Content Include="Content\fonts\line-awesome.ttf" />
+    <Content Include="Content\fonts\line-awesome.woff" />
+    <Content Include="Content\fonts\line-awesome.woff2" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Content\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Content\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Content\fonts\Simple-Line-Icons.woff2" />
+    <Content Include="Content\fonts\themify.eot" />
+    <Content Include="Content\fonts\themify.ttf" />
+    <Content Include="Content\fonts\themify.woff" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.woff2" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Home\PanelCliente_Pedidos.cshtml" />
+    <Content Include="Views\Home\PanelCliente_Inicio.cshtml" />
+    <Content Include="Views\Home\PanelCliente_InformacionUsuario.cshtml" />
+    <Content Include="Views\Home\Comprobante.cshtml" />
+    <Content Include="Views\Home\PanelCliente_ListaCompras.cshtml" />
+    <Content Include="Views\Home\OlvidemiContraseña.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Direcciones\Register.cshtml" />
+    <Content Include="Views\Personas\PanelCliente_InfoUsuario.cshtml" />
+    <Content Include="Views\Pedidos\PanelCliente_Pedidos.cshtml" />
+    <Content Include="Views\Listas\PanelCliente_ListaCompras.cshtml" />
+    <Content Include="Views\Pedidos\Comprobante.cshtml" />
+    <Content Include="Views\Personas\Register.cshtml" />
+    <Content Include="Views\Productoes\PanelCliente_Productos.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutCliente.cshtml" />
+    <Content Include="Views\Shared\_LayoutPanelComerciante.cshtml" />
+    <Content Include="Views\Comerciantes\Delete.cshtml" />
+    <Content Include="Views\Comerciantes\Details.cshtml" />
+    <Content Include="Views\Comerciantes\Edit.cshtml" />
+    <Content Include="Views\Comerciantes\Index.cshtml" />
+    <Content Include="Views\Comerciantes\PanelComerciante.cshtml" />
+    <Content Include="Views\Comerciantes\PanelInformacion.cshtml" />
+    <Content Include="Views\Comerciantes\PanelNegocio.cshtml" />
+    <Content Include="Views\Comerciantes\PanelPedidos.cshtml" />
+    <Content Include="Views\Comerciantes\Register.cshtml" />
+    <Content Include="Views\Negocios\Create.cshtml" />
+    <Content Include="Views\Negocios\Delete.cshtml" />
+    <Content Include="Views\Negocios\Details.cshtml" />
+    <Content Include="Views\Negocios\Edit.cshtml" />
+    <Content Include="Views\Negocios\Index.cshtml" />
+    <Content Include="Views\Negocios\PanelCliente_Inicio.cshtml" />
+    <Content Include="Views\Direcciones\CreateNegocio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BEUProyecto\BEUProyecto.csproj">
-      <Project>{0d6adbee-a924-49ba-8a5b-24e3b95d44f0}</Project>
+      <Project>{14b042eb-45df-4fb4-8198-4bb1b044c251}</Project>
       <Name>BEUProyecto</Name>
     </ProjectReference>
   </ItemGroup>

@@ -35,6 +35,12 @@ namespace BEUProyecto.Transactions
             return db.Comerciante.Find(id);
         }
 
+        public static Comerciante GetComerciante(int idPersona)
+        {
+            Entities db = new Entities();
+            return db.Comerciante.FirstOrDefault(x => x.idPersona == idPersona);
+        }
+
         public static void Update(Comerciante comerciante)
         {
             using (Entities db = new Entities())

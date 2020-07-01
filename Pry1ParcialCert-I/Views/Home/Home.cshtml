@@ -1,0 +1,183 @@
+﻿@Styles.Render("~/Content/css/style.css")
+<section>
+    <div id="myCarousel" class="carousel slide banner_main" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container-fluid">
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                                <div class="text-bg">
+                                    <h1>MI VECI<br>HA LLEGADO</h1>
+                                    <p>Llego la aplicación web para el barrio<br>MI VECI tiene lo que necesitas<br>Tus tiendas más cercana estarán a tu disposición<br>REGISTRATE Y SE PARTE DE NOSOTROS</p>
+                                    <a class="read_more" href='@Url.Action("Register", "Direcciones")'>REGISTRARSE</a>
+                                </div>
+                            </div>
+                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                                <div class="images_box">
+                                    <figure><img src='@Url.Content("~/images/slider1.svg")' /></figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container-fluid ">
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                                <div class="text-bg">
+                                    <h1>¿TIENES UN NEGOCIO<br>Y LAS VENTAS HAN BAJADO?</h1>
+                                    <p>No te preocupes, con la aplicación Web MI VECI podrás promocionar tus productos a tus vecinos más cercanos<br>Solo REGISTRATE y se parte de la familia de VECI'S del barrio</p>
+                                    <a class="read_more" href='@Url.Action("Register", "Direcciones")'>REGISTRARSE</a>
+                                </div>
+                            </div>
+                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                                <div class="images_box">
+                                    <figure><img src='@Url.Content("~/images/slider2.svg")' /></figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container-fluid">
+                    <div class="carousel-caption ">
+                        <div class="row">
+                            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                                <div class="text-bg">
+                                    <h1>ADIÓS LARGAS FILAS<br></h1>
+                                    <p>
+                                        Deja a un lado las largas filas y al distanciamiento cuando vas a la tienda, con MI VECI podrás realizar tus pedidos y consultar si tu VECI cercano tiene delivery
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                                <div class="images_box">
+                                    <figure><img src='@Url.Content("~/images/slider3.svg")' /></figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        </a>
+    </div>
+    <!-- end banner -->
+    <!-- quienes somos -->
+    <div id="somos" class="about">
+        <div class="container-fluid">
+            <div class="row d_flex">
+                <div class="col-md-5">
+                    <div class="about_img">
+                        <figure><img src='@Url.Content("~/images/about_img.jpg")' /></figure>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="titlepage">
+                        <h2>¿Quiénes <span class="blu">Somos?</span></h2>
+                        <p> Somos un grupo de emprendedores universitarios con el fin de ayudar en la promoción y venta de productos de las tiendas del barrio con el propósito de evitar aglomeraciones inecesarias al momento de comprar</p>
+                        <a class="read_more" href='#contact'>
+                            Contáctanos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end quienes somos -->
+    <!-- tiendas -->
+    <div class="choose " id="tienda">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2><br>NUESTROS<span class="blu"><br>VECI'S ALIADOS</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="choose_bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end tiendas -->
+    <!-- productos -->
+    <div id="productos" class="work">
+        <div class="container-fluid">
+            <div class="row d_flex">
+                <div class="col-md-7">
+                    <div class="titlepage">
+                        <h2>PRODUCTOS<span class="blu"><br>QUE OFERTAN</span></h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
+                        <a class="read_more" href='@Url.Action("Login", "Home")'>
+                            Conocer más
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="work_img">
+                        <figure><img src='@Url.Content("~/images/work_img.jpg")' /></figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end productos -->
+    <!-- contactanos -->
+    <div id="contact" class="request">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2>¿Quieres <span class="white">Contactarnos?</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="request" class="main_form">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <input class="contactus" placeholder="Nombre Completo" type="type" name="Full Name">
+                            </div>
+                            <div class="col-md-12">
+                                <input class="contactus" placeholder="Email" type="type" name="Email">
+                            </div>
+                            <div class="col-md-12">
+                                <input class="contactus" placeholder="Teléfono Celular" type="type" name="Phone Number">
+                            </div>
+                            <div class="col-md-12">
+                                <textarea class="textarea" placeholder="Mensaje" type="type" Message="Name"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="send_btn">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
