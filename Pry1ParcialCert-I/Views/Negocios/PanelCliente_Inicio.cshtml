@@ -8,7 +8,7 @@
     <header class="navbar navbar-expand-md navbar-light">
         <div class="container-xl">
             <a href="#" class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pr-0 pr-md-3">
-                <img src='@Url.Content("~/images/logo.svg")' alt="MiVeci" class="navbar-brand-image" />
+                <img src='@Url.Content("~/images/logo-black.svg")' alt="MiVeci" class="navbar-brand-image" />
             </a>
             <div class="navbar-nav flex-row order-md-last">
                 <div class="nav-item dropdown">
@@ -88,14 +88,21 @@
 
                     <div class="col-sm-6 col-xl-4">
                         <div class="card d-flex flex-column">
-                            <img src=@ViewBag.Imagen class="card-img-top" alt="Card top image" style="height:255px;">
+                            @if (item.imagen != null)
+                            {
+                                <div align="center"><img src="data:image/png;base64,@System.Convert.ToBase64String(item.imagen)" height="100" class="card-img-top" alt="Card top image"/></div><br />
+                            }
+                            else
+                            {
+                                <div align="center"><img src='@Url.Content("~/images/logo-black.svg")' class="card-img-top" alt="Card top image" height="100" ></div><br />
+                            }
                             <div class="card-body d-flex flex-column">
                                 <h2 class="card-title">@ViewBag.Negocio</h2>
                                 <div class="d-flex align-items-center">
                                     <span class="badge bg-green" style="margin-right:10px;"></span>
                                     @if (ViewBag.Estado)
                                     {
-                                        <label>Abierto</label> 
+                                        <label>Abierto</label>
                                     }
                                     else
                                     {
@@ -107,23 +114,23 @@
                                         @ViewBag.Descripcion
                                     </p>
                                 </div>
-                                <label>@ViewBag.Horario</label>
+                                <label>Horario: @ViewBag.Horario</label>
                                 <div class="d-flex align-items-center">
                                     <span class="badge bg-azure" style="margin-right:10px;"></span>
                                     @if (ViewBag.Delibery)
                                     {
-                                        <label>Delibery: Si</label> 
+                                        <label>Delivery: Si</label>
                                     }
                                     else
                                     {
-                                        <label>Delibery: No</label>
+                                        <label>Delivery: No</label>
                                     }
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <span class="badge bg-azure" style="margin-right:10px;"></span>
                                     @if (ViewBag.Reserva)
                                     {
-                                        <label>Reserva: Si</label> 
+                                        <label>Reserva: Si</label>
                                     }
                                     else
                                     {

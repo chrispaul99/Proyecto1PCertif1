@@ -20,7 +20,6 @@ namespace BEUProyecto
         {
             this.Detalle = new HashSet<Detalle>();
         }
-
         [ScaffoldColumn(false)]
         public int idProducto { get; set; }
 
@@ -48,17 +47,16 @@ namespace BEUProyecto
         [Display(Name = "Stock")]
         public int stock { get; set; }
 
-        
+
         [Display(Name = "Disponibilidad")]
         public bool disponibilidad { get; set; }
 
 
-        [Display(Name = "Imágen")]
-        public string imagen { get; set; }
+        [Display(Name = "Imagen")]
+        public byte[] imagen { get; set; }
 
         [Display(Name = "Negocio")]
-        public int idNegocio { get; set; }
-    
+        public int idNegocio { get; set; }    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle> Detalle { get; set; }
         public virtual Negocio Negocio { get; set; }

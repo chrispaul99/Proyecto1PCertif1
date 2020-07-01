@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using BEUProyecto;
 using BEUProyecto.Transactions;
@@ -18,7 +20,6 @@ namespace Pry1ParcialCert_I.Controllers
     public class NegociosController : Controller
     {
         private Entities db = new Entities();
-
         // GET: Negocios
         public ActionResult Index()
         {
@@ -56,12 +57,19 @@ namespace Pry1ParcialCert_I.Controllers
             }
             return View(negocio);
         }
-
         // GET: Negocios/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id,int? id2)
         {
-            ViewBag.idComerciante = new SelectList(db.Comerciante, "idComerciante", "baseLegal");
-            ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Direccion direccion = DireccionBLL.Get(id);
+            if (direccion == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.idComerciante = id2;
             return View();
         }
 
@@ -70,17 +78,21 @@ namespace Pry1ParcialCert_I.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idNegocio,nombre,categoria,descripcion,horario,estado,imagen,delivery,reserva,idDireccion,idComerciante")] Negocio negocio)
+        public ActionResult Create([Bind(Include = "idNegocio,nombre,categoria,descripcion,horario,open,close,estado,imagen,delivery,reserva,idDireccion,idComerciante")] Negocio negocio,int id)
         {
+
+            HttpPostedFileBase fileBase = Request.Files[0];
+            WebImage imagen = new WebImage(fileBase.InputStream);
+            negocio.imagen = imagen.GetBytes();
+            negocio.idDireccion = id;
+            negocio.horario = negocio.open.ToString("HH:mm") + "-" + negocio.close.ToString("HH:mm");
+           
             if (ModelState.IsValid)
             {
                 NegocioBLL.Create(negocio);
-                return RedirectToAction("Index");
+                return RedirectToAction("PanelNegocio","Comerciantes",new {id=negocio.idComerciante});
             }
-
-            ViewBag.idComerciante = new SelectList(db.Comerciante, "idComerciante", "baseLegal", negocio.idComerciante);
-            ViewBag.idDireccion = new SelectList(db.Direccion, "idDireccion", "nombre", negocio.idDireccion);
-            return View(negocio);
+            return View();
         }
 
         // GET: Negocios/Edit/5

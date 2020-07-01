@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="DBPEDIDOSTIENDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Comerciante">
     <Key>
       <PropertyRef Name="idComerciante" />
     </Key>
     <Property Name="idComerciante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="baseLegal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="baseLegal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="idPersona" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Persona" Relationship="Self.FK_Comerciante_Persona" FromRole="Comerciante" ToRole="Persona" />
     <NavigationProperty Name="Negocio" Relationship="Self.FK_Negocio_Comerciante" FromRole="Comerciante" ToRole="Negocio" />
@@ -16,7 +16,7 @@
     </Key>
     <Property Name="idDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="idProducto" Type="Int32" Nullable="false" />
-    <Property Name="idLista" Type="Int32" Nullable="false" />
+    <Property Name="idLista" Type="Int32" />
     <NavigationProperty Name="Lista" Relationship="Self.FK_Detalle_Lista" FromRole="Detalle" ToRole="Lista" />
     <NavigationProperty Name="Producto" Relationship="Self.FK_Detalle_Producto" FromRole="Detalle" ToRole="Producto" />
   </EntityType>
@@ -45,7 +45,7 @@
       <PropertyRef Name="idLista" />
     </Key>
     <Property Name="idLista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="totalPagar" Type="Decimal" Precision="6" Scale="4" Nullable="false" />
+    <Property Name="totalPagar" Type="Decimal" Precision="6" Scale="4" />
     <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Lista" FromRole="Lista" ToRole="Detalle" />
     <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Lista" FromRole="Lista" ToRole="Pedido" />
   </EntityType>
@@ -57,9 +57,9 @@
     <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="horario" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="horario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" Nullable="false" />
-    <Property Name="imagen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="delivery" Type="Boolean" Nullable="false" />
     <Property Name="reserva" Type="Boolean" Nullable="false" />
     <Property Name="idDireccion" Type="Int32" Nullable="false" />
@@ -108,7 +108,7 @@
     <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="stock" Type="Int32" Nullable="false" />
     <Property Name="disponibilidad" Type="Boolean" Nullable="false" />
-    <Property Name="imagen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <Property Name="idNegocio" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Producto" FromRole="Producto" ToRole="Detalle" />
     <NavigationProperty Name="Negocio" Relationship="Self.FK_Producto_Negocio" FromRole="Producto" ToRole="Negocio" />
@@ -142,7 +142,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Detalle_Lista">
-    <End Role="Lista" Type="Self.Lista" Multiplicity="1">
+    <End Role="Lista" Type="Self.Lista" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />

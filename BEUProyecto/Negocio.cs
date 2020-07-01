@@ -12,7 +12,6 @@ namespace BEUProyecto
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Web;
 
     public partial class Negocio
     {
@@ -21,7 +20,6 @@ namespace BEUProyecto
         {
             this.Producto = new HashSet<Producto>();
         }
-
         [ScaffoldColumn(false)]
         public int idNegocio { get; set; }
 
@@ -39,36 +37,39 @@ namespace BEUProyecto
         [Display(Name = "Descripción")]
         public string descripcion { get; set; }
 
+        public string horario { get; set; }
+
         [DataType(DataType.Time)]
         [Required(ErrorMessage = "EL horario es requerido")]
-        [Display(Name = "Horario")]
-        public System.DateTime horario { get; set; }
+        [Display(Name = "Horario de Apertura")]
+        public DateTime open { get; set; }
 
+        [DataType(DataType.Time)]
+        [Required(ErrorMessage = "EL horario es requerido")]
+        [Display(Name = "Horario de Cierre")]
+        public DateTime close { get; set; }
 
         [Display(Name = "Estado")]
         public bool estado { get; set; }
 
         [Display(Name = "Imagen")]
-        public string imagen { get; set; }
-
-        public HttpPostedFileBase ImageFile { get; set; }
-
+        public byte[] imagen { get; set; }
 
         [Display(Name = "Delivery")]
         public bool delivery { get; set; }
 
-        
+
         [Display(Name = "Reserva")]
         public bool reserva { get; set; }
 
-        
+
         [Display(Name = "Dirección")]
         public int idDireccion { get; set; }
 
-        
+
         [Display(Name = "Comerciante")]
         public int idComerciante { get; set; }
-    
+
         public virtual Comerciante Comerciante { get; set; }
         public virtual Direccion Direccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

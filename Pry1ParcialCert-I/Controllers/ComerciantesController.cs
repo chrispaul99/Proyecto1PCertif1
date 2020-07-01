@@ -19,44 +19,50 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = PersonaBLL.Get(id);
-            if (persona == null)
+            Comerciante comerciante = ComercianteBLL.Get(id);
+            Persona persona = PersonaBLL.Get(comerciante.idPersona);
+            if (comerciante == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id = persona.idPersona;
+            ViewBag.id = comerciante.idComerciante;
             ViewBag.nombres = persona.nombres;
             ViewBag.correo = persona.correo;
             return View("PanelComerciante");
         }
         public ActionResult PanelNegocio(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = PersonaBLL.Get(id);
-            if (persona == null)
+            Comerciante comerciante = ComercianteBLL.Get(id);
+            Persona persona = PersonaBLL.Get(comerciante.idPersona);
+            if (comerciante == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id = persona.idPersona;
+            ViewBag.id = comerciante.idComerciante;
             ViewBag.nombres = persona.nombres;
             ViewBag.correo = persona.correo;
+            ViewBag.lst = NegocioBLL.List();
             return View("PanelNegocio");
         }
         public ActionResult PanelPedidos(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = PersonaBLL.Get(id);
-            if (persona == null)
+            Comerciante comerciante = ComercianteBLL.Get(id);
+            Persona persona = PersonaBLL.Get(comerciante.idPersona);
+            if (comerciante == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id = persona.idPersona;
+            ViewBag.id = comerciante.idComerciante;
             ViewBag.nombres = persona.nombres;
             ViewBag.correo = persona.correo;
             return View("PanelPedidos");
@@ -67,13 +73,14 @@ namespace Pry1ParcialCert_I.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = PersonaBLL.Get(id);
-            if (persona == null)
+            Comerciante comerciante = ComercianteBLL.Get(id);
+            Persona persona = PersonaBLL.Get(comerciante.idPersona);
+            if (comerciante == null)
             {
                 return HttpNotFound();
             }
             Direccion direccion = DireccionBLL.Get(persona.idDireccion);
-            ViewBag.id = persona.idPersona;
+            ViewBag.id = comerciante.idComerciante;
             ViewBag.nombres = persona.nombres;
             ViewBag.correo = persona.correo;
             ViewBag.apellidos = persona.apellidos;
@@ -122,7 +129,6 @@ namespace Pry1ParcialCert_I.Controllers
                 comerciante.idPersona = id;
                 ComercianteBLL.Create(comerciante);
                 return RedirectToAction("Login","Home");
-            return View(comerciante);
         }
 
         // GET: Comerciantes/Edit/5
