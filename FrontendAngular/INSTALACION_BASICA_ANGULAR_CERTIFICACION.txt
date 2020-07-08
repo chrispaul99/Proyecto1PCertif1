@@ -1,0 +1,57 @@
+********************** INSTALACION DE UN PROYECTO ANGULAR ************************************
+
+********************** INICIAR PROYECTO*******************************************************
+npm install -g @angular/cli
+
+ng new my-app
+
+cd my-app
+
+ng serve --open
+
+********************* CREACION DE COMPONENTES*************************************************
+ng generate component xyz
+
+********************* CREACION DE CLASES******************************************************
+ng generate class xyz
+
+********************* CREACION DE SERVICIO ***************************************************
+ng generate service xyz
+
+********************** CONEXION CON EL SERVIDOR***********************************************
+npm i --save rxjs-compat
+
+npm i --save @angular/http
+
+*********************** INSTALACION DE BOOSTRAP Y JQUERY**************************************
+npm install bootstrap jquery @popperjs/core
+
+********************* EN ANGULAR.JSON*********************************************************
+
+******* STYLES****************
+"node_modules/bootstrap/dist/css/bootstrap.min.css", 
+
+*******SCRIPTS****************
+"node_modules/jquery/dist/jquery.min.js",
+"node_modules/@popperjs/core/dist/umd/popper.min.js",
+"node_modules/bootstrap/dist/js/bootstrap.min.js"
+
+
+******************** ICONOS*******************************************************************
+npm install @fortawesome/fontawesome-svg-core
+npm install @fortawesome/angular-fontawesome@0.5.0
+npm install @fortawesome/free-solid-svg-icons
+
+******************* ALERTAS*******************************************************************
+npm install sweetalert2 --save
+
+
+******************* EN app.module.ts *********************************************************
+import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+ imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FontAwesomeModule    
+  ],
