@@ -83,9 +83,9 @@ namespace Pry1ParcialCert_I.Controllers
 
             HttpPostedFileBase fileBase = Request.Files[0];
             WebImage imagen = new WebImage(fileBase.InputStream);
-            negocio.imagen = imagen.GetBytes();
+            negocio.imagen = "";
             negocio.idDireccion = id;
-            negocio.horario = negocio.open.ToString("HH:mm") + "-" + negocio.close.ToString("HH:mm");
+            //negocio.horario = negocio.open.ToString("HH:mm") + "-" + negocio.close.ToString("HH:mm");
            
             if (ModelState.IsValid)
             {

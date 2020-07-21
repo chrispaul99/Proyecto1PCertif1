@@ -11,8 +11,7 @@ namespace BEUProyecto
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,43 +19,17 @@ namespace BEUProyecto
         {
             this.Detalle = new HashSet<Detalle>();
         }
-        [ScaffoldColumn(false)]
+    
         public int idProducto { get; set; }
-
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "El nombre es requerido"), MaxLength(55)]
-        [Display(Name = "Nombre")]
         public string nombre { get; set; }
-
-        [DataType(DataType.Currency)]
-        [Required(ErrorMessage = "El precio es requerido")]
-        [Display(Name = "Precio")]
         public decimal precio { get; set; }
-
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "La categoría es requerida"), MaxLength(55)]
-        [Display(Name = "Categoría")]
         public string categoria { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Descripción")]
         public string descripcion { get; set; }
-
-        [DataType(DataType.Duration)]
-        [Required(ErrorMessage = "El stock es requerido")]
-        [Display(Name = "Stock")]
         public int stock { get; set; }
-
-
-        [Display(Name = "Disponibilidad")]
         public bool disponibilidad { get; set; }
-
-
-        [Display(Name = "Imagen")]
-        public byte[] imagen { get; set; }
-
-        [Display(Name = "Negocio")]
-        public int idNegocio { get; set; }    
+        public string imagen { get; set; }
+        public int idNegocio { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle> Detalle { get; set; }
         public virtual Negocio Negocio { get; set; }

@@ -84,7 +84,7 @@ namespace Pry1ParcialCert_I.Controllers
         {
             if (ModelState.IsValid)
             {
-                persona.idDireccion = id;
+                //persona.idDireccion = id;
                 PersonaBLL.Create(persona);
                 if (persona.rol == "N")
                     return RedirectToAction("Register", "Comerciantes", new { id = persona.idPersona });

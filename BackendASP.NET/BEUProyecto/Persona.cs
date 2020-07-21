@@ -11,8 +11,7 @@ namespace BEUProyecto
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Persona
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,44 +19,16 @@ namespace BEUProyecto
         {
             this.Comerciante = new HashSet<Comerciante>();
         }
-
-        [ScaffoldColumn(false)]
+    
         public int idPersona { get; set; }
-
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "Los nombres son requeridos"), MaxLength(55)]
-        [Display(Name = "Nombres")]
         public string nombres { get; set; }
-
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "Los apellidos son requeridos"), MaxLength(55)]
-        [Display(Name = "Apellidos")]
         public string apellidos { get; set; }
-
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "La cédula es requerida"), MaxLength(15)]
-        [Display(Name = "Cédula")]
         public string cedula { get; set; }
-
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Número Celular")]
         public string celular { get; set; }
-
-        [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "El correo electrónico es requerido")]
-        [Display(Name = "Correo Electrónico")]
         public string correo { get; set; }
-
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "La contraseña es requerida"), MaxLength(30)]
-        [Display(Name = "Contraseña")]
         public string password { get; set; }
-
-        [Display(Name = "Rol")]
         public string rol { get; set; }
-
-        [Display(Name = "Dirección")]
-        public Nullable<int> idDireccion { get; set; }
+        public int idDireccion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comerciante> Comerciante { get; set; }
