@@ -11,8 +11,7 @@ namespace BEUProyecto
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Lista
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +20,9 @@ namespace BEUProyecto
             this.Detalle = new HashSet<Detalle>();
             this.Pedido = new HashSet<Pedido>();
         }
-
-        [ScaffoldColumn(false)]
+    
         public int idLista { get; set; }
-
-        [Display(Name = "Total a pagar")]
-        public decimal totalPagar { get; set; }
+        public Nullable<decimal> totalPagar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle> Detalle { get; set; }

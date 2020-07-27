@@ -11,32 +11,14 @@ namespace BEUProyecto
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Pedido
     {
-        [ScaffoldColumn(false)]
         public int idPedido { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]
-        [Display(Name = "Fecha del pedido")]
         public System.DateTime fecha { get; set; }
-
-
-        [Display(Name = "Comprobante")]
-        public byte[] documento { get; set; }
-
-        
-        [Display(Name = "Cliente")]
+        public string documento { get; set; }
         public int idCliente { get; set; }
-
-        
-        [Display(Name = "Lista")]
         public int idLista { get; set; }
-
-        
-        [Display(Name = "Forma de pago")]
         public int idFormaPago { get; set; }
     
         public virtual Forma_de_Pago Forma_de_Pago { get; set; }
