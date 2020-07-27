@@ -103,3 +103,11 @@ D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\EntityFramewor
 D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\System.Web.Cors.dll
 D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\System.Web.Http.Cors.dll
 D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\System.Web.Http.Cors.xml
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\Microsoft.IdentityModel.Logging.dll
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\Microsoft.IdentityModel.Tokens.dll
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\Microsoft.IdentityModel.Logging.xml
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\Microsoft.IdentityModel.Tokens.xml
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\WebApiMiVeci\bin\System.IdentityModel.Tokens.Jwt.xml

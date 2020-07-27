@@ -67,17 +67,17 @@ namespace BEUProyecto.Transactions
             }
         }
 
-        public static int ValidateLogin(Persona persona)
+        public static Persona ValidateLogin(Persona persona)
         {
             Entities db = new Entities();
             foreach(var item in db.Persona.ToList())
             {
                 if(item.correo==persona.correo && item.password == persona.password)
                 {
-                    return item.idPersona;
+                    return item;
                 }
             }
-            return 0;
+            return null;
 
         }
 

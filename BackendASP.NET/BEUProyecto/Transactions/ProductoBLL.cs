@@ -84,5 +84,33 @@ namespace BEUProyecto.Transactions
             Entities db = new Entities();
             return db.Producto.ToList();
         }
+        public static List<Producto> ListAzar()
+        {
+            List<Producto> listado = List();
+            int total = listado.Count();
+            List<Producto> listadoAzar = new List<Producto>();
+            Random rnd = new Random();
+            for(int i=1;i<=10;i++)
+            {
+                int num = rnd.Next(total);
+                listadoAzar.Add(listado[num]);
+                
+            }
+            return listadoAzar;
+        }
+        public static List<Producto> ListNegocio(int idNegocio)
+        {
+            List<Producto> listado = new List<Producto>();
+            Entities db = new Entities();
+            foreach (var item in db.Producto.ToList())
+            {
+                Negocio negocio = NegocioBLL.Get(item.idNegocio);
+                if (negocio.idNegocio == idNegocio)
+                {
+                    listado.Add(item);
+                }
+            }
+            return listado;
+        }
     }
 }
