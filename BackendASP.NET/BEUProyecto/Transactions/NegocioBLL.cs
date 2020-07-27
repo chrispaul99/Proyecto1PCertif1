@@ -86,5 +86,20 @@ namespace BEUProyecto.Transactions
             Entities db = new Entities();
             return db.Negocio.ToList();
         }
+
+        public static List<Negocio> ListCiudad(string ciudad)
+        {
+            List<Negocio> listado = new List<Negocio>();
+            Entities db = new Entities();
+            foreach (var item in db.Negocio.ToList())
+            {
+                Direccion direccion = DireccionBLL.Get(item.idDireccion);
+                if (direccion.ciudad == ciudad)
+                {
+                    listado.Add(item);
+                }
+            }
+            return listado;
+        }
     }
 }

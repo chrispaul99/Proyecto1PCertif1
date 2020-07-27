@@ -26,6 +26,7 @@ namespace BEUProyecto
         public string latitud { get; set; }
         public string longitud { get; set; }
         public string referencia { get; set; }
+        public string ciudad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Negocio> Negocio { get; set; }

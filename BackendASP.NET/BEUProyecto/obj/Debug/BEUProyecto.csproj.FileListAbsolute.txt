@@ -9,3 +9,12 @@ D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\obj\Debug\BEUProyec
 D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\obj\Debug\BEUProyecto.csproj.CopyComplete
 D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\obj\Debug\BEUProyecto.dll
 D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\obj\Debug\BEUProyecto.pdb
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\Microsoft.IdentityModel.Logging.dll
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\Microsoft.IdentityModel.Logging.xml
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\obj\Debug\BEUProyecto.csprojAssemblyReference.cache

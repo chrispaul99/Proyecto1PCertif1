@@ -14,6 +14,7 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVeci.Controllers
 {
+    [Authorize]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class PersonasController : ApiController
     {
@@ -97,7 +98,6 @@ namespace WebApiMiVeci.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
         // DELETE: api/Personas/5
         [ResponseType(typeof(Persona))]
         public IHttpActionResult DeletePersona(int id)

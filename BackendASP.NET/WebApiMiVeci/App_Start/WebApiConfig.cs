@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using WebApiMiVeci.Models;
 
 namespace WebApiMiVeci
 {
@@ -13,7 +14,7 @@ namespace WebApiMiVeci
             config.EnableCors();
             // Rutas de API web
             config.MapHttpAttributeRoutes();
-
+            config.MessageHandlers.Add(new TokenValidationHandler());
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
@@ -21,6 +22,7 @@ namespace WebApiMiVeci
             );
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
             = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            
         }
     }
 }
