@@ -14,7 +14,8 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVeci.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [RoutePrefix("api/Productos")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ProductosController : ApiController
     {
@@ -31,6 +32,21 @@ namespace WebApiMiVeci.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("buscar")]
+        public IHttpActionResult Buscar(int id)
+        {
+            try
+            {
+                Producto p = ProductoBLL.Get(id);
+                return Content(HttpStatusCode.OK, p);
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
         // GET: api/Productos/5
 
         [ResponseType(typeof(Producto))]
@@ -38,7 +54,7 @@ namespace WebApiMiVeci.Controllers
         {
             try
             {
-                Producto result = ProductoBLL.Get(id);
+                List<Producto> result = ProductoBLL.ListNegocio(id);
                 if (result == null)
                 {
                     return NotFound();
