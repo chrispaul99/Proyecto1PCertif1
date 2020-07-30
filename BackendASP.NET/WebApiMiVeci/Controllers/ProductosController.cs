@@ -33,8 +33,9 @@ namespace WebApiMiVeci.Controllers
         }
 
         [HttpGet]
-        [Route("buscar")]
-        public IHttpActionResult Buscar(int id)
+        [Route("Search")]
+        [ResponseType(typeof(Producto))]
+        public IHttpActionResult Search(int id)
         {
             try
             {
