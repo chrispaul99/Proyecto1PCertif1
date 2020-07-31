@@ -19,6 +19,8 @@
     <Property Name="idLista" Type="Int32" />
     <NavigationProperty Name="Lista" Relationship="Self.FK_Detalle_Lista" FromRole="Detalle" ToRole="Lista" />
     <NavigationProperty Name="Producto" Relationship="Self.FK_Detalle_Producto" FromRole="Detalle" ToRole="Producto" />
+    <Property Name="cantidad" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="6" Scale="4" />
   </EntityType>
   <EntityType Name="Direccion">
     <Key>
@@ -31,6 +33,7 @@
     <Property Name="referencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Negocio" Relationship="Self.FK_Negocio_Direccion" FromRole="Direccion" ToRole="Negocio" />
     <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_Direccion" FromRole="Direccion" ToRole="Persona" />
+    <Property Name="ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Forma_de_Pago">
     <Key>
@@ -80,6 +83,8 @@
     <Property Name="idFormaPago" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Forma_de_Pago" Relationship="Self.FK_Pedido_Forma_de_Pago" FromRole="Pedido" ToRole="Forma_de_Pago" />
     <NavigationProperty Name="Lista" Relationship="Self.FK_Pedido_Lista" FromRole="Pedido" ToRole="Lista" />
+    <Property Name="entregado" Type="Boolean" />
+    <Property Name="recibido" Type="Boolean" />
   </EntityType>
   <EntityType Name="Persona">
     <Key>
@@ -283,5 +288,16 @@
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Producto" EntitySet="Producto" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
   </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

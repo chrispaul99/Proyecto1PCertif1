@@ -20,6 +20,8 @@
           <Property Name="idDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idProducto" Type="int" Nullable="false" />
           <Property Name="idLista" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="total" Type="decimal" Precision="6" Scale="4" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -72,6 +74,8 @@
           <Property Name="idCliente" Type="int" Nullable="false" />
           <Property Name="idLista" Type="int" Nullable="false" />
           <Property Name="idFormaPago" Type="int" Nullable="false" />
+          <Property Name="entregado" Type="bit" />
+          <Property Name="recibido" Type="bit" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
@@ -100,6 +104,16 @@
           <Property Name="disponibilidad" Type="bit" Nullable="false" />
           <Property Name="imagen" Type="varchar(max)" />
           <Property Name="idNegocio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Comerciante_Persona">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1">
@@ -235,6 +249,7 @@
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Comerciante_Persona" Association="Self.FK_Comerciante_Persona">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Comerciante" EntitySet="Comerciante" />
@@ -295,6 +310,8 @@
           <Property Name="idLista" Type="Int32" />
           <NavigationProperty Name="Lista" Relationship="Self.FK_Detalle_Lista" FromRole="Detalle" ToRole="Lista" />
           <NavigationProperty Name="Producto" Relationship="Self.FK_Detalle_Producto" FromRole="Detalle" ToRole="Producto" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="6" Scale="4" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -357,6 +374,8 @@
           <Property Name="idFormaPago" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Forma_de_Pago" Relationship="Self.FK_Pedido_Forma_de_Pago" FromRole="Pedido" ToRole="Forma_de_Pago" />
           <NavigationProperty Name="Lista" Relationship="Self.FK_Pedido_Lista" FromRole="Pedido" ToRole="Lista" />
+          <Property Name="entregado" Type="Boolean" />
+          <Property Name="recibido" Type="Boolean" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
@@ -560,7 +579,18 @@
             <End Role="Negocio" EntitySet="Negocio" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
         </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -579,6 +609,8 @@
           <EntitySetMapping Name="Detalle">
             <EntityTypeMapping TypeName="Model.Detalle">
               <MappingFragment StoreEntitySet="Detalle">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="idDetalle" ColumnName="idDetalle" />
                 <ScalarProperty Name="idProducto" ColumnName="idProducto" />
                 <ScalarProperty Name="idLista" ColumnName="idLista" />
@@ -633,6 +665,8 @@
           <EntitySetMapping Name="Pedido">
             <EntityTypeMapping TypeName="Model.Pedido">
               <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="recibido" ColumnName="recibido" />
+                <ScalarProperty Name="entregado" ColumnName="entregado" />
                 <ScalarProperty Name="idPedido" ColumnName="idPedido" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="documento" ColumnName="documento" />
@@ -669,6 +703,17 @@
                 <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

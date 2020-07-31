@@ -12,18 +12,12 @@ namespace BEUProyecto
     using System;
     using System.Collections.Generic;
     
-    public partial class Pedido
+    public partial class sysdiagrams
     {
-        public int idPedido { get; set; }
-        public System.DateTime fecha { get; set; }
-        public string documento { get; set; }
-        public int idCliente { get; set; }
-        public int idLista { get; set; }
-        public int idFormaPago { get; set; }
-        public Nullable<bool> entregado { get; set; }
-        public Nullable<bool> recibido { get; set; }
-    
-        public virtual Forma_de_Pago Forma_de_Pago { get; set; }
-        public virtual Lista Lista { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
