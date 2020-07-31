@@ -23,6 +23,7 @@
         <AssociationConnector Association="Model.FK_Pedido_Forma_de_Pago" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Pedido_Lista" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Producto_Negocio" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

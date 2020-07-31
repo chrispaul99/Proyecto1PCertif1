@@ -105,6 +105,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\ComercianteBLL.cs" />
     <Compile Include="Transactions\DetalleBLL.cs" />
     <Compile Include="Transactions\DireccionBLL.cs" />

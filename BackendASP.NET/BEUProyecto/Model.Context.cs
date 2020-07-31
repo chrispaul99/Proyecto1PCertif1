@@ -34,5 +34,6 @@ namespace BEUProyecto
         public virtual DbSet<Pedido> Pedido { get; set; }
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

@@ -15,6 +15,8 @@
     <Property Name="idDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idProducto" Type="int" Nullable="false" />
     <Property Name="idLista" Type="int" />
+    <Property Name="cantidad" Type="int" />
+    <Property Name="total" Type="decimal" Precision="6" Scale="4" />
   </EntityType>
   <EntityType Name="Direccion">
     <Key>
@@ -22,6 +24,7 @@
     </Key>
     <Property Name="idDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ciudad" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="latitud" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="longitud" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="referencia" Type="varchar" MaxLength="100" Nullable="false" />
@@ -66,6 +69,8 @@
     <Property Name="idCliente" Type="int" Nullable="false" />
     <Property Name="idLista" Type="int" Nullable="false" />
     <Property Name="idFormaPago" Type="int" Nullable="false" />
+    <Property Name="entregado" Type="bit" />
+    <Property Name="recibido" Type="bit" />
   </EntityType>
   <EntityType Name="Persona">
     <Key>
@@ -94,6 +99,16 @@
     <Property Name="disponibilidad" Type="bit" Nullable="false" />
     <Property Name="imagen" Type="varchar(max)" />
     <Property Name="idNegocio" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Comerciante_Persona">
     <End Role="Persona" Type="Self.Persona" Multiplicity="1">
@@ -229,6 +244,7 @@
     <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Comerciante_Persona" Association="Self.FK_Comerciante_Persona">
       <End Role="Persona" EntitySet="Persona" />
       <End Role="Comerciante" EntitySet="Comerciante" />
