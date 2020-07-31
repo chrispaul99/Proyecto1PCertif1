@@ -32,14 +32,19 @@ namespace WebApiMiVeci.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("buscar")]
-        public IHttpActionResult Buscar(int id)
+        [HttpPost]
+        [Route("Search")]
+        [ResponseType(typeof(Producto))]
+        public IHttpActionResult Search(int id)
         {
             try
             {
-                Producto p = ProductoBLL.Get(id);
-                return Content(HttpStatusCode.OK, p);
+                Producto result = ProductoBLL.Get(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Content(HttpStatusCode.OK, result);
             }
             catch (Exception ex)
             {
