@@ -476,7 +476,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BEUProyecto\BEUProyecto.csproj">
-      <Project>{7816e288-c742-4f81-b863-80102eb671f7}</Project>
+      <Project>{0394300a-bf38-411a-a597-cbc0ded8638a}</Project>
       <Name>BEUProyecto</Name>
     </ProjectReference>
   </ItemGroup>
