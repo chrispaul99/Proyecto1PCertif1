@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pry1ParcialCert-I", "Pry1Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiMiVeci", "..\WebApiMiVeci\WebApiMiVeci.csproj", "{23C5AE64-AE3F-481E-9DDD-4BEC175DEED9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BEUProyecto", "..\BEUProyecto\BEUProyecto.csproj", "{7816E288-C742-4F81-B863-80102EB671F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BEUProyecto", "..\BEUProyecto\BEUProyecto.csproj", "{0394300A-BF38-411A-A597-CBC0DED8638A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{23C5AE64-AE3F-481E-9DDD-4BEC175DEED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23C5AE64-AE3F-481E-9DDD-4BEC175DEED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23C5AE64-AE3F-481E-9DDD-4BEC175DEED9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7816E288-C742-4F81-B863-80102EB671F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7816E288-C742-4F81-B863-80102EB671F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7816E288-C742-4F81-B863-80102EB671F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7816E288-C742-4F81-B863-80102EB671F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0394300A-BF38-411A-A597-CBC0DED8638A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0394300A-BF38-411A-A597-CBC0DED8638A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0394300A-BF38-411A-A597-CBC0DED8638A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0394300A-BF38-411A-A597-CBC0DED8638A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

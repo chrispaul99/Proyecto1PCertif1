@@ -16,22 +16,5 @@ namespace Pry1ParcialCert_I.Controllers
             ViewBag.title = "MI VECI";
             return View("Home");
         }
-
-        public ActionResult Login(Persona persona)
-        {
-            int idPer = PersonaBLL.ValidateLogin(persona);
-            Persona per = PersonaBLL.Get(idPer);
-            if (PersonaBLL.ValidateLogin(persona) != 0)
-            {
-                if (per.rol == "N")
-                {
-                    Comerciante comerciante = ComercianteBLL.GetComerciante(idPer);
-                    return RedirectToAction("PanelComerciante", "Comerciantes", new { id = comerciante.idComerciante });
-                }
-                else
-                    return RedirectToAction("PanelCliente_Inicio", "Negocios", new { id = idPer });
-            }
-            return View();
-        }
     }
 }
