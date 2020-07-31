@@ -39,7 +39,7 @@
             <PropertyRef Name="idFormaPago" />
           </Key>
           <Property Name="idFormaPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cantidad" Type="decimal" Precision="6" Scale="4" />
+          <Property Name="tipo" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Lista">
           <Key>
@@ -73,7 +73,7 @@
           <Property Name="documento" Type="varchar(max)" Nullable="false" />
           <Property Name="idCliente" Type="int" Nullable="false" />
           <Property Name="idLista" Type="int" Nullable="false" />
-          <Property Name="idFormaPago" Type="int" Nullable="false" />
+          <Property Name="idFormaPago" Type="int" />
           <Property Name="entregado" Type="bit" />
           <Property Name="recibido" Type="bit" />
         </EntityType>
@@ -184,7 +184,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Pedido_Forma_de_Pago">
-          <End Role="Forma_de_Pago" Type="Self.Forma_de_Pago" Multiplicity="1">
+          <End Role="Forma_de_Pago" Type="Self.Forma_de_Pago" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
@@ -333,6 +333,7 @@
           <Property Name="idFormaPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cantidad" Type="Decimal" Precision="6" Scale="4" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Forma_de_Pago" FromRole="Forma_de_Pago" ToRole="Pedido" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Lista">
           <Key>
@@ -371,7 +372,7 @@
           <Property Name="documento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idCliente" Type="Int32" Nullable="false" />
           <Property Name="idLista" Type="Int32" Nullable="false" />
-          <Property Name="idFormaPago" Type="Int32" Nullable="false" />
+          <Property Name="idFormaPago" Type="Int32" />
           <NavigationProperty Name="Forma_de_Pago" Relationship="Self.FK_Pedido_Forma_de_Pago" FromRole="Pedido" ToRole="Forma_de_Pago" />
           <NavigationProperty Name="Lista" Relationship="Self.FK_Pedido_Lista" FromRole="Pedido" ToRole="Lista" />
           <Property Name="entregado" Type="Boolean" />
@@ -632,8 +633,8 @@
           <EntitySetMapping Name="Forma_de_Pago">
             <EntityTypeMapping TypeName="Model.Forma_de_Pago">
               <MappingFragment StoreEntitySet="Forma_de_Pago">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="idFormaPago" ColumnName="idFormaPago" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
