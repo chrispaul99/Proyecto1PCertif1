@@ -14,9 +14,9 @@
     </Key>
     <Property Name="idDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idProducto" Type="int" Nullable="false" />
-    <Property Name="idLista" Type="int" />
-    <Property Name="cantidad" Type="int" />
-    <Property Name="total" Type="decimal" Precision="6" Scale="4" />
+    <Property Name="idLista" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="Direccion">
     <Key>
@@ -41,7 +41,7 @@
       <PropertyRef Name="idLista" />
     </Key>
     <Property Name="idLista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="totalPagar" Type="decimal" Precision="6" Scale="4" />
+    <Property Name="totalPagar" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="Negocio">
     <Key>
@@ -68,9 +68,9 @@
     <Property Name="documento" Type="varchar(max)" Nullable="false" />
     <Property Name="idCliente" Type="int" Nullable="false" />
     <Property Name="idLista" Type="int" Nullable="false" />
-    <Property Name="idFormaPago" Type="int" />
-    <Property Name="entregado" Type="bit" />
-    <Property Name="recibido" Type="bit" />
+    <Property Name="idFormaPago" Type="int" Nullable="false" />
+    <Property Name="entregado" Type="bit" Nullable="false" />
+    <Property Name="recibido" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Persona">
     <Key>
@@ -92,7 +92,7 @@
     </Key>
     <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="precio" Type="decimal" Precision="6" Scale="4" Nullable="false" />
+    <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="categoria" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="stock" Type="int" Nullable="false" />
@@ -115,7 +115,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Detalle_Lista">
-    <End Role="Lista" Type="Self.Lista" Multiplicity="0..1">
+    <End Role="Lista" Type="Self.Lista" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
@@ -169,7 +169,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Pedido_Forma_de_Pago">
-    <End Role="Forma_de_Pago" Type="Self.Forma_de_Pago" Multiplicity="0..1">
+    <End Role="Forma_de_Pago" Type="Self.Forma_de_Pago" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
@@ -193,6 +193,20 @@
       </Principal>
       <Dependent Role="Pedido">
         <PropertyRef Name="idLista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="idCliente" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -260,6 +274,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Pedido_Lista" Association="Self.FK_Pedido_Lista">
       <End Role="Lista" EntitySet="Lista" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Persona" Association="Self.FK_Pedido_Persona">
+      <End Role="Persona" EntitySet="Persona" />
       <End Role="Pedido" EntitySet="Pedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Persona_Direccion" Association="Self.FK_Persona_Direccion">

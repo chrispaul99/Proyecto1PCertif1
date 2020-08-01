@@ -18,6 +18,7 @@ namespace BEUProyecto
         public Persona()
         {
             this.Comerciante = new HashSet<Comerciante>();
+            this.Pedido = new HashSet<Pedido>();
         }
     
         public int idPersona { get; set; }
@@ -33,5 +34,7 @@ namespace BEUProyecto
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comerciante> Comerciante { get; set; }
         public virtual Direccion Direccion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pedido> Pedido { get; set; }
     }
 }

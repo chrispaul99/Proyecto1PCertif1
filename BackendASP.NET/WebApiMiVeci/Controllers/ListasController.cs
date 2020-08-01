@@ -14,7 +14,6 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVeci.Controllers
 {
-    [Authorize]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ListasController : ApiController
     {
@@ -90,7 +89,7 @@ namespace WebApiMiVeci.Controllers
             try
             {
                 ListaBLL.Create(lista);
-                return Content(HttpStatusCode.Created, "Lista creada correctamente");
+                return CreatedAtRoute("DefaultApi", new { id = lista.idLista }, lista);
             }
             catch (Exception ex)
             {

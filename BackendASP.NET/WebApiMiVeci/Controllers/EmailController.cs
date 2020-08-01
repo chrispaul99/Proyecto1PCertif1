@@ -12,7 +12,7 @@ using WebApiMiVeci.Models;
 
 namespace WebApiMiVeci.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class EmailController : ApiController
     {

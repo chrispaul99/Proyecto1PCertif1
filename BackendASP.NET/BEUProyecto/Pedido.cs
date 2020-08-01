@@ -9,6 +9,7 @@
 
 namespace BEUProyecto
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -19,11 +20,15 @@ namespace BEUProyecto
         public string documento { get; set; }
         public int idCliente { get; set; }
         public int idLista { get; set; }
-        public Nullable<int> idFormaPago { get; set; }
-        public Nullable<bool> entregado { get; set; }
-        public Nullable<bool> recibido { get; set; }
-    
+        public int idFormaPago { get; set; }
+        public bool entregado { get; set; }
+        public bool recibido { get; set; }
+
+        [JsonIgnore]
         public virtual Forma_de_Pago Forma_de_Pago { get; set; }
+        [JsonIgnore]
         public virtual Lista Lista { get; set; }
+        [JsonIgnore]
+        public virtual Persona Persona { get; set; }
     }
 }

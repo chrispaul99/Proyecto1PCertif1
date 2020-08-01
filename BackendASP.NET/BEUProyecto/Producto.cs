@@ -30,8 +30,8 @@ namespace BEUProyecto
         public string imagen { get; set; }
         public int idNegocio { get; set; }
     
+        public virtual Negocio Negocio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle> Detalle { get; set; }
-        public virtual Negocio Negocio { get; set; }
     }
 }

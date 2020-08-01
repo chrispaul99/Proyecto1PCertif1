@@ -9,6 +9,7 @@
 
 namespace BEUProyecto
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -17,16 +18,18 @@ namespace BEUProyecto
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Lista()
         {
-            this.Detalle = new HashSet<Detalle>();
             this.Pedido = new HashSet<Pedido>();
+            this.Detalle = new HashSet<Detalle>();
         }
     
         public int idLista { get; set; }
-        public Nullable<decimal> totalPagar { get; set; }
+        public decimal totalPagar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detalle> Detalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Pedido> Pedido { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
+        public virtual ICollection<Detalle> Detalle { get; set; }
     }
 }
