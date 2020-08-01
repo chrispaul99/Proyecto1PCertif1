@@ -19,9 +19,9 @@ namespace BEUProyecto
         public string documento { get; set; }
         public int idCliente { get; set; }
         public int idLista { get; set; }
-        public Nullable<int> idFormaPago { get; set; }
-        public Nullable<bool> entregado { get; set; }
-        public Nullable<bool> recibido { get; set; }
+        public int idFormaPago { get; set; }
+        public bool entregado { get; set; }
+        public bool recibido { get; set; }
     
         public virtual Forma_de_Pago Forma_de_Pago { get; set; }
         public virtual Lista Lista { get; set; }

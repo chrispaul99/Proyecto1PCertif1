@@ -14,12 +14,6 @@ namespace BEUProyecto
     
     public partial class Producto
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Producto()
-        {
-            this.Detalle = new HashSet<Detalle>();
-        }
-    
         public int idProducto { get; set; }
         public string nombre { get; set; }
         public decimal precio { get; set; }
@@ -30,8 +24,6 @@ namespace BEUProyecto
         public string imagen { get; set; }
         public int idNegocio { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detalle> Detalle { get; set; }
         public virtual Negocio Negocio { get; set; }
     }
 }
