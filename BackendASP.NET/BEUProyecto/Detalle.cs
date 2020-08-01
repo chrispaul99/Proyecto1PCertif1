@@ -19,5 +19,8 @@ namespace BEUProyecto
         public int idLista { get; set; }
         public int cantidad { get; set; }
         public decimal total { get; set; }
+    
+        public virtual Lista Lista { get; set; }
+        public virtual Producto Producto { get; set; }
     }
 }

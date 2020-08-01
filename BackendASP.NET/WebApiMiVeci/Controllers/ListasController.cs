@@ -89,7 +89,7 @@ namespace WebApiMiVeci.Controllers
             try
             {
                 ListaBLL.Create(lista);
-                return Content(HttpStatusCode.Created, "Lista creada correctamente");
+                return CreatedAtRoute("DefaultApi", new { id = lista.idLista }, lista);
             }
             catch (Exception ex)
             {

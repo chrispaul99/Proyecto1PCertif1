@@ -9,6 +9,7 @@
 
 namespace BEUProyecto
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -18,12 +19,17 @@ namespace BEUProyecto
         public Lista()
         {
             this.Pedido = new HashSet<Pedido>();
+            this.Detalle = new HashSet<Detalle>();
         }
     
         public int idLista { get; set; }
         public decimal totalPagar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Pedido> Pedido { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
+        public virtual ICollection<Detalle> Detalle { get; set; }
     }
 }

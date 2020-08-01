@@ -114,6 +114,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Detalle_Lista">
+    <End Role="Lista" Type="Self.Lista" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lista">
+        <PropertyRef Name="idLista" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="idLista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Negocio_Comerciante">
     <End Role="Comerciante" Type="Self.Comerciante" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -168,6 +196,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Pedido_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Persona_Direccion">
     <End Role="Direccion" Type="Self.Direccion" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -210,6 +252,14 @@
       <End Role="Persona" EntitySet="Persona" />
       <End Role="Comerciante" EntitySet="Comerciante" />
     </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Lista" Association="Self.FK_Detalle_Lista">
+      <End Role="Lista" EntitySet="Lista" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Producto" Association="Self.FK_Detalle_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
     <AssociationSet Name="FK_Negocio_Comerciante" Association="Self.FK_Negocio_Comerciante">
       <End Role="Comerciante" EntitySet="Comerciante" />
       <End Role="Negocio" EntitySet="Negocio" />
@@ -224,6 +274,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Pedido_Lista" Association="Self.FK_Pedido_Lista">
       <End Role="Lista" EntitySet="Lista" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Persona" Association="Self.FK_Pedido_Persona">
+      <End Role="Persona" EntitySet="Persona" />
       <End Role="Pedido" EntitySet="Pedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Persona_Direccion" Association="Self.FK_Persona_Direccion">
