@@ -14,15 +14,19 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVeci.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [RoutePrefix("api/Pedidos")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class PedidosController : ApiController
     {
-        public IHttpActionResult GetPedido()
+
+        [HttpGet]
+        [Route("Filter")]
+        public IHttpActionResult FiltrarPedidos(int id)
         {
             try
             {
-                List<Pedido> todos = PedidoBLL.List();
+                List<Pedido> todos = PedidoBLL.FiltrarPorCliente(id);
                 return Content(HttpStatusCode.OK, todos);
             }
             catch (Exception ex)

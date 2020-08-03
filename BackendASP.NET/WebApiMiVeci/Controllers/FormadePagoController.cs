@@ -14,7 +14,8 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVeci.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [RoutePrefix("api/FormadePago")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class FormadePagoController : ApiController
     {
@@ -44,7 +45,8 @@ namespace WebApiMiVeci.Controllers
                 {
                     return NotFound();
                 }
-                return Content(HttpStatusCode.OK, result);
+                //return Content(HttpStatusCode.OK, result);
+                return CreatedAtRoute("DefaultApi", new { id = result.tipo }, result);
             }
             catch (Exception ex)
             {

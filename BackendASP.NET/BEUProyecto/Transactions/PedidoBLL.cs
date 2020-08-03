@@ -84,5 +84,22 @@ namespace BEUProyecto.Transactions
             Entities db = new Entities();
             return db.Pedido.ToList();
         }
+
+        public static List<Pedido> FiltrarPorCliente(int idCliente)
+        {
+            List<Pedido> listado = new List<Pedido>();
+            Entities db = new Entities();
+            List<Pedido> pedidos = db.Pedido.ToList();
+            listado = pedidos.Where(x => x.idCliente == idCliente).ToList();
+            /*foreach (var item in db.Pedido.ToList())
+            {
+                Persona persona = PersonaBLL.Get(item.idCliente);
+                if (persona.idPersona == idCliente)
+                {
+                    listado.Add(item);
+                }
+            }*/
+            return listado;
+        }
     }
 }

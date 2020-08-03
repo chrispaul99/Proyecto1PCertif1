@@ -14,7 +14,7 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVeci.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class DetallesController : ApiController
     {
