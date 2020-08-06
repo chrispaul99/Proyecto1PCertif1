@@ -11,3 +11,4 @@ D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\obj\Debug\BEUProyec
 D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\obj\Debug\BEUProyecto.pdb
 D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\Newtonsoft.Json.dll
 D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\bin\Debug\Newtonsoft.Json.xml
+D:\ProyectoCert\Proyecto1PCertif1\BackendASP.NET\BEUProyecto\obj\Debug\BEUProyecto.csprojAssemblyReference.cache

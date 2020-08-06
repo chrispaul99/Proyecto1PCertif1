@@ -14,7 +14,6 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVeci.Controllers
 {
-    [Authorize]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class DireccionesController : ApiController
     {
@@ -91,7 +90,7 @@ namespace WebApiMiVeci.Controllers
             try
             {
                 DireccionBLL.Create(direccion);
-                return Content(HttpStatusCode.Created, "Dirección creada correctamente");
+                return CreatedAtRoute("DefaultApi", new { id = direccion.idDireccion }, direccion);
             }
             catch (Exception ex)
             {

@@ -40,7 +40,7 @@ namespace WebApiMiVeci.Controllers
             {
                 smtp.Send(mm);
             }
-            return Ok();
+            return Content(HttpStatusCode.OK, "Correo enviado correctamente");
         }
 
         // PUT: api/Email/5
