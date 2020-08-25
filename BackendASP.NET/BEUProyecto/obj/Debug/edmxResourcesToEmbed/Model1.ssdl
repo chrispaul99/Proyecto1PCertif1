@@ -41,6 +41,7 @@
       <PropertyRef Name="idLista" />
     </Key>
     <Property Name="idLista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" />
     <Property Name="totalPagar" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="Negocio">
@@ -51,9 +52,9 @@
     <Property Name="nombre" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="categoria" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="descripcion" Type="varchar(max)" Nullable="false" />
-    <Property Name="horario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="horarioInicial" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="horarioFinal" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="imagen" Type="varchar(max)" />
-    <Property Name="estado" Type="bit" Nullable="false" />
     <Property Name="delivery" Type="bit" Nullable="false" />
     <Property Name="reserva" Type="bit" Nullable="false" />
     <Property Name="idDireccion" Type="int" Nullable="false" />
@@ -64,13 +65,13 @@
       <PropertyRef Name="idPedido" />
     </Key>
     <Property Name="idPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="fecha" Type="date" Nullable="false" />
-    <Property Name="documento" Type="varchar(max)" Nullable="false" />
+    <Property Name="fecha" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="idCliente" Type="int" Nullable="false" />
     <Property Name="idLista" Type="int" Nullable="false" />
     <Property Name="idFormaPago" Type="int" Nullable="false" />
-    <Property Name="entregado" Type="bit" Nullable="false" />
-    <Property Name="recibido" Type="bit" Nullable="false" />
+    <Property Name="tiempoOrder" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="documento" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Persona">
     <Key>

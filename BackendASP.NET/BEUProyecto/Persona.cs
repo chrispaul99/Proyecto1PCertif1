@@ -9,7 +9,6 @@
 
 namespace BEUProyecto
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -34,7 +33,6 @@ namespace BEUProyecto
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comerciante> Comerciante { get; set; }
-        [JsonIgnore]
         public virtual Direccion Direccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedido> Pedido { get; set; }

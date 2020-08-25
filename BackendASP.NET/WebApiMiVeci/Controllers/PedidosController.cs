@@ -14,8 +14,8 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVeci.Controllers
 {
-    [Authorize]
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [RoutePrefix("api/Pedidos")]
+    [EnableCors(origins: "https://localhost:4200", headers: "*", methods: "*")]
     public class PedidosController : ApiController
     {
         public IHttpActionResult GetPedido()
@@ -50,7 +50,20 @@ namespace WebApiMiVeci.Controllers
                 return Content(HttpStatusCode.BadRequest, ex);
             }
         }
-
+        [HttpGet]
+        [Route("MyOrders")]
+        public IHttpActionResult MyOrders(int id)
+        {
+            try
+            {
+                List<Pedido> misPedidos = PedidoBLL.MisOrders(id);
+                return Content(HttpStatusCode.OK, misPedidos);
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.BadRequest, ex);
+            }
+        }
         // PUT: api/Pedidos/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPedido(int id, Pedido pedido)

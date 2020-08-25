@@ -24,9 +24,9 @@ namespace BEUProyecto
         public string nombre { get; set; }
         public string categoria { get; set; }
         public string descripcion { get; set; }
-        public string horario { get; set; }
+        public string horarioInicial { get; set; }
+        public string horarioFinal { get; set; }
         public string imagen { get; set; }
-        public bool estado { get; set; }
         public bool delivery { get; set; }
         public bool reserva { get; set; }
         public int idDireccion { get; set; }

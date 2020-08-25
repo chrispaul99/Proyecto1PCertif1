@@ -19,8 +19,8 @@
     <Property Name="idLista" Type="Int32" Nullable="false" />
     <Property Name="cantidad" Type="Int32" Nullable="false" />
     <Property Name="total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-    <NavigationProperty Name="Lista" Relationship="Model.FK_Detalle_Lista" FromRole="Detalle" ToRole="Lista" />
-    <NavigationProperty Name="Producto" Relationship="Model.FK_Detalle_Producto" FromRole="Detalle" ToRole="Producto" />
+    <NavigationProperty Name="Lista" Relationship="Self.FK_Detalle_Lista" FromRole="Detalle" ToRole="Lista" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_Detalle_Producto" FromRole="Detalle" ToRole="Producto" />
   </EntityType>
   <EntityType Name="Direccion">
     <Key>
@@ -48,9 +48,10 @@
       <PropertyRef Name="idLista" />
     </Key>
     <Property Name="idLista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="totalPagar" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Lista" FromRole="Lista" ToRole="Detalle" />
     <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Lista" FromRole="Lista" ToRole="Pedido" />
-    <NavigationProperty Name="Detalle" Relationship="Model.FK_Detalle_Lista" FromRole="Lista" ToRole="Detalle" />
   </EntityType>
   <EntityType Name="Negocio">
     <Key>
@@ -60,9 +61,9 @@
     <Property Name="nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="categoria" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="horario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="horarioInicial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="horarioFinal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="estado" Type="Boolean" Nullable="false" />
     <Property Name="delivery" Type="Boolean" Nullable="false" />
     <Property Name="reserva" Type="Boolean" Nullable="false" />
     <Property Name="idDireccion" Type="Int32" Nullable="false" />
@@ -76,16 +77,16 @@
       <PropertyRef Name="idPedido" />
     </Key>
     <Property Name="idPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="documento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="idCliente" Type="Int32" Nullable="false" />
     <Property Name="idLista" Type="Int32" Nullable="false" />
     <Property Name="idFormaPago" Type="Int32" Nullable="false" />
-    <Property Name="entregado" Type="Boolean" Nullable="false" />
-    <Property Name="recibido" Type="Boolean" Nullable="false" />
+    <Property Name="tiempoOrder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="documento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Forma_de_Pago" Relationship="Self.FK_Pedido_Forma_de_Pago" FromRole="Pedido" ToRole="Forma_de_Pago" />
     <NavigationProperty Name="Lista" Relationship="Self.FK_Pedido_Lista" FromRole="Pedido" ToRole="Lista" />
-    <NavigationProperty Name="Persona" Relationship="Model.FK_Pedido_Persona" FromRole="Pedido" ToRole="Persona" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Pedido_Persona" FromRole="Pedido" ToRole="Persona" />
   </EntityType>
   <EntityType Name="Persona">
     <Key>
@@ -102,7 +103,7 @@
     <Property Name="idDireccion" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Comerciante" Relationship="Self.FK_Comerciante_Persona" FromRole="Persona" ToRole="Comerciante" />
     <NavigationProperty Name="Direccion" Relationship="Self.FK_Persona_Direccion" FromRole="Persona" ToRole="Direccion" />
-    <NavigationProperty Name="Pedido" Relationship="Model.FK_Pedido_Persona" FromRole="Persona" ToRole="Pedido" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Persona" FromRole="Persona" ToRole="Pedido" />
   </EntityType>
   <EntityType Name="Producto">
     <Key>
@@ -117,8 +118,8 @@
     <Property Name="disponibilidad" Type="Boolean" Nullable="false" />
     <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="idNegocio" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Producto" FromRole="Producto" ToRole="Detalle" />
     <NavigationProperty Name="Negocio" Relationship="Self.FK_Producto_Negocio" FromRole="Producto" ToRole="Negocio" />
-    <NavigationProperty Name="Detalle" Relationship="Model.FK_Detalle_Producto" FromRole="Producto" ToRole="Detalle" />
   </EntityType>
   <Association Name="FK_Comerciante_Persona">
     <End Role="Persona" Type="Self.Persona" Multiplicity="1">
@@ -145,6 +146,34 @@
       </Principal>
       <Dependent Role="Negocio">
         <PropertyRef Name="idComerciante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Lista">
+    <End Role="Lista" Type="Self.Lista" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lista">
+        <PropertyRef Name="idLista" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="idLista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="idProducto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -216,6 +245,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Pedido_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Comerciante" EntityType="Self.Comerciante" />
     <EntitySet Name="Detalle" EntityType="Self.Detalle" />
@@ -233,6 +276,14 @@
     <AssociationSet Name="FK_Negocio_Comerciante" Association="Self.FK_Negocio_Comerciante">
       <End Role="Comerciante" EntitySet="Comerciante" />
       <End Role="Negocio" EntitySet="Negocio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Lista" Association="Self.FK_Detalle_Lista">
+      <End Role="Lista" EntitySet="Lista" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Producto" Association="Self.FK_Detalle_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Detalle" EntitySet="Detalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Negocio_Direccion" Association="Self.FK_Negocio_Direccion">
       <End Role="Direccion" EntitySet="Direccion" />
@@ -254,59 +305,9 @@
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Producto" EntitySet="Producto" />
     </AssociationSet>
-    <AssociationSet Name="FK_Detalle_Lista" Association="Model.FK_Detalle_Lista">
-      <End Role="Lista" EntitySet="Lista" />
-      <End Role="Detalle" EntitySet="Detalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Detalle_Producto" Association="Model.FK_Detalle_Producto">
-      <End Role="Producto" EntitySet="Producto" />
-      <End Role="Detalle" EntitySet="Detalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Pedido_Persona" Association="Model.FK_Pedido_Persona">
+    <AssociationSet Name="FK_Pedido_Persona" Association="Self.FK_Pedido_Persona">
       <End Role="Persona" EntitySet="Persona" />
       <End Role="Pedido" EntitySet="Pedido" />
     </AssociationSet>
   </EntityContainer>
-  <Association Name="FK_Detalle_Lista">
-    <End Type="Model.Lista" Role="Lista" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="Model.Detalle" Role="Detalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Lista">
-        <PropertyRef Name="idLista" />
-      </Principal>
-      <Dependent Role="Detalle">
-        <PropertyRef Name="idLista" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Detalle_Producto">
-    <End Type="Model.Producto" Role="Producto" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="Model.Detalle" Role="Detalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Producto">
-        <PropertyRef Name="idProducto" />
-      </Principal>
-      <Dependent Role="Detalle">
-        <PropertyRef Name="idProducto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Pedido_Persona">
-    <End Type="Model.Persona" Role="Persona" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="Model.Pedido" Role="Pedido" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Persona">
-        <PropertyRef Name="idPersona" />
-      </Principal>
-      <Dependent Role="Pedido">
-        <PropertyRef Name="idCliente" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

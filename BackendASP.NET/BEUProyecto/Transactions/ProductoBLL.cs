@@ -43,6 +43,8 @@ namespace BEUProyecto.Transactions
                 {
                     try
                     {
+                        Producto.Negocio = null;
+                        Producto.Detalle = null;
                         db.Producto.Attach(Producto);
                         db.Entry(Producto).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();

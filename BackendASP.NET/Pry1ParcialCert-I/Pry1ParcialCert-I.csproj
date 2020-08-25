@@ -164,15 +164,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transactions\ComercianteBLL.cs" />
-    <Compile Include="Transactions\DetalleBLL.cs" />
-    <Compile Include="Transactions\DireccionBLL.cs" />
-    <Compile Include="Transactions\FormaDePagoBLL.cs" />
-    <Compile Include="Transactions\ListaBLL.cs" />
-    <Compile Include="Transactions\NegocioBLL.cs" />
-    <Compile Include="Transactions\PedidoBLL.cs" />
-    <Compile Include="Transactions\PersonaBLL.cs" />
-    <Compile Include="Transactions\ProductoBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\cssCliente\demo.min.css" />
@@ -485,7 +476,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BEUProyecto\BEUProyecto.csproj">
-      <Project>{8458b446-9f3b-4f52-895d-35300020c385}</Project>
+      <Project>{24231466-e239-4a9a-a507-d7dab1fca5d7}</Project>
       <Name>BEUProyecto</Name>
     </ProjectReference>
   </ItemGroup>

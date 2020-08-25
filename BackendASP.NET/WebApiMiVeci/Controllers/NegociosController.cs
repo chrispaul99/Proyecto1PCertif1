@@ -53,16 +53,11 @@ namespace WebApiMiVeci.Controllers
 
         // PUT: api/Negocios/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutNegocio(int id, Negocio negocio)
+        public IHttpActionResult PutNegocio(Negocio negocio)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != negocio.idNegocio)
-            {
-                return BadRequest();
             }
             try
             {
@@ -71,8 +66,7 @@ namespace WebApiMiVeci.Controllers
             }
             catch (Exception ex)
             {
-                Negocio neg = NegocioBLL.Get(id);
-                if (neg == null)
+                if (negocio == null)
                 {
                     return NotFound();
                 }

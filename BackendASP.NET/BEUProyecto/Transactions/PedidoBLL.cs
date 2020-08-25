@@ -16,6 +16,10 @@ namespace BEUProyecto.Transactions
                 {
                     try
                     {
+                        c.fecha = DateTime.Now;
+                        c.tiempoOrder = "Sin Determinar";
+                        c.estado = "Ingresado";
+                        UpdateStock(c);
                         db.Pedido.Add(c);
                         db.SaveChanges();
                         transaction.Commit();
@@ -56,7 +60,15 @@ namespace BEUProyecto.Transactions
                 }
             }
         }
-
+        public static void UpdateStock(Pedido pedido)
+        {
+            foreach (var item in pedido.Lista.Detalle)
+            {
+                item.Producto.stock = item.Producto.stock - item.cantidad;
+                ProductoBLL.Update(item.Producto);
+                item.Producto = null;
+            }
+        }
         public static void Delete(int? id)
         {
             using (Entities db = new Entities())
@@ -83,6 +95,11 @@ namespace BEUProyecto.Transactions
         {
             Entities db = new Entities();
             return db.Pedido.ToList();
+        }
+        public static List<Pedido> MisOrders(int cliente)
+        {
+            Entities db = new Entities();
+            return db.Pedido.Where(x => x.idCliente == cliente).ToList();
         }
     }
 }
