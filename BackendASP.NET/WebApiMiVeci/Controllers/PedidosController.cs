@@ -15,7 +15,7 @@ using BEUProyecto.Transactions;
 namespace WebApiMiVeci.Controllers
 {
     [RoutePrefix("api/Pedidos")]
-    [EnableCors(origins: "https://localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class PedidosController : ApiController
     {
         public IHttpActionResult GetPedido()

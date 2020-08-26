@@ -20,6 +20,7 @@ namespace BEUProyecto.Transactions
                         c.tiempoOrder = "Sin Determinar";
                         c.estado = "Ingresado";
                         UpdateStock(c);
+
                         db.Pedido.Add(c);
                         db.SaveChanges();
                         transaction.Commit();
@@ -64,7 +65,7 @@ namespace BEUProyecto.Transactions
         {
             foreach (var item in pedido.Lista.Detalle)
             {
-                item.Producto.stock = item.Producto.stock - item.cantidad;
+                item.Producto.stock -= item.cantidad;
                 ProductoBLL.Update(item.Producto);
                 item.Producto = null;
             }
