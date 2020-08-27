@@ -18,6 +18,7 @@ namespace WebApiMiVECI.Controllers
     public class ComerciantesController : ApiController
     {
         // GET: api/Comerciantes
+        [Authorize(Roles = "A")]
         public IHttpActionResult GetComerciante()
         {
             try
@@ -32,7 +33,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // GET: api/Comerciantes/5
-
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(Comerciante))]
         public IHttpActionResult GetComerciante(int id)
         {
@@ -52,6 +53,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // PUT: api/Comerciantes/5
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutComerciante(int id, Comerciante comerciante)
         {
@@ -84,6 +86,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Comerciantes
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(Comerciante))]
         public IHttpActionResult PostComerciante(Comerciante comerciante)
         {
@@ -99,6 +102,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // DELETE: api/Comerciantes/5
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(Comerciante))]
         public IHttpActionResult DeleteComerciante(int id)
         {

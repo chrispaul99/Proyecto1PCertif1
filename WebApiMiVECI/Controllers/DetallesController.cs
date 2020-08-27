@@ -18,6 +18,7 @@ namespace WebApiMiVECI.Controllers
     public class DetallesController : ApiController
     {
         // GET: api/Detalles
+        [Authorize(Roles = "A")]
         public IHttpActionResult GetDetalle()
         {
             try
@@ -32,7 +33,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // GET: api/Detalles/5
-
+        [Authorize(Roles = "A")]
         [ResponseType(typeof(Detalle))]
         public IHttpActionResult GetDetalle(int id)
         {
@@ -52,6 +53,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // PUT: api/Detalles/5
+        [Authorize(Roles = "A")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDetalle(int id, Detalle detalle)
         {
@@ -84,6 +86,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Detalles
+        [Authorize(Roles = "C,A")]
         [ResponseType(typeof(Detalle))]
         public IHttpActionResult PostDetalle(Detalle detalle)
         {
@@ -99,6 +102,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // DELETE: api/Detalles/5
+        [Authorize(Roles = "C,A")]
         [ResponseType(typeof(Detalle))]
         public IHttpActionResult DeleteDetalle(int id)
         {

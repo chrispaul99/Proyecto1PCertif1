@@ -18,6 +18,7 @@ namespace WebApiMiVECI.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class PedidosController : ApiController
     {
+        [Authorize(Roles = "A")]
         public IHttpActionResult GetPedido()
         {
             try
@@ -32,7 +33,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // GET: api/Pedidos/5
-
+        [Authorize(Roles = "A")]
         [ResponseType(typeof(Pedido))]
         public IHttpActionResult GetPedido(int id)
         {
@@ -50,6 +51,7 @@ namespace WebApiMiVECI.Controllers
                 return Content(HttpStatusCode.BadRequest, ex);
             }
         }
+        [Authorize(Roles = "C,A")]
         [HttpGet]
         [Route("MyOrders")]
         public IHttpActionResult MyOrders(int id)
@@ -65,6 +67,7 @@ namespace WebApiMiVECI.Controllers
             }
         }
         // PUT: api/Pedidos/5
+        [Authorize(Roles = "C,A")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPedido(int id, Pedido pedido)
         {
@@ -98,6 +101,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Pedidos
+        [Authorize(Roles = "C,A")]
         [ResponseType(typeof(Pedido))]
         public IHttpActionResult PostPedido(Pedido pedido)
         {
@@ -114,6 +118,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // DELETE: api/Pedidos/5
+        [Authorize(Roles = "C,A")]
         [ResponseType(typeof(Pedido))]
         public IHttpActionResult DeletePedido(int id)
         {

@@ -18,34 +18,6 @@ namespace WebApiMiVECI.Controllers
     public class LoginController : ApiController
     {
         [HttpGet]
-        [Route("Negocios")]
-        public IHttpActionResult Negocios()
-        {
-            try
-            {
-                List<Negocio> todos = NegocioBLL.List();
-                return Content(HttpStatusCode.OK, todos);
-            }
-            catch (Exception ex)
-            {
-                return Content(HttpStatusCode.BadRequest, ex);
-            }
-        }
-        [HttpGet]
-        [Route("Productos")]
-        public IHttpActionResult Productos()
-        {
-            try
-            {
-                List<Producto> todos = ProductoBLL.List();
-                return Content(HttpStatusCode.OK, todos);
-            }
-            catch (Exception ex)
-            {
-                return Content(HttpStatusCode.BadRequest, ex);
-            }
-        }
-        [HttpGet]
         [Route("echoping")]
         public IHttpActionResult EchoPing()
         {
@@ -66,8 +38,6 @@ namespace WebApiMiVECI.Controllers
         {
             if (login == null)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-
-            //TODO: Validate credentials Correctly, this code is only for demo !!
             Persona usuario = new Persona();
             usuario.correo = login.correo;
             usuario.password = login.password;

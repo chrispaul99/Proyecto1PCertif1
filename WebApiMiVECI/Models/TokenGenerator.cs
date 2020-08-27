@@ -25,16 +25,15 @@ namespace WebApiMiVeci.Models
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var _Header = new JwtHeader(signingCredentials);
-
             // CREAMOS LOS CLAIMS //
             var _Claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.NameId, persona.idPersona.ToString()),
+                new Claim("rol", persona.rol),
                 new Claim("Nombres", persona.nombres),
                 new Claim("Apellidos", persona.apellidos),
-                new Claim("Cedula", persona.cedula),
                 new Claim(JwtRegisteredClaimNames.Email, persona.correo),
-                new Claim(ClaimTypes.Role, persona.rol)
+                new Claim( ClaimTypes.Role, persona.rol)
             };
             // CREAMOS EL PAYLOAD //
             var _Payload = new JwtPayload(

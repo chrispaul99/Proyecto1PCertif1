@@ -17,6 +17,7 @@ namespace WebApiMiVECI.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class DireccionesController : ApiController
     {
+        [Authorize(Roles = "A")]
         // GET: api/Direcciones
         public IHttpActionResult GetDireccion()
         {
@@ -33,6 +34,7 @@ namespace WebApiMiVECI.Controllers
 
         // GET: api/Direcciones/5
 
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(Direccion))]
         public IHttpActionResult GetDireccion(int id)
         {
@@ -52,6 +54,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // PUT: api/Direcciones/5
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDireccion(int id, Direccion direccion)
         {
@@ -84,6 +87,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Direcciones
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(Direccion))]
         public IHttpActionResult PostDireccion(Direccion direccion)
         {
@@ -99,6 +103,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // DELETE: api/Direcciones/5
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(Direccion))]
         public IHttpActionResult DeleteDireccion(int id)
         {

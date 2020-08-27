@@ -14,11 +14,11 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVECI.Controllers
 {
-    //[Authorize]
     [RoutePrefix("api/Productos")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ProductosController : ApiController
     {
+        [AllowAnonymous]
         public IHttpActionResult GetProducto()
         {
             try
@@ -32,6 +32,7 @@ namespace WebApiMiVECI.Controllers
             }
         }
 
+        [Authorize(Roles = "N,C,A")]
         [HttpPost]
         [Route("Search")]
         [ResponseType(typeof(Producto))]
@@ -53,7 +54,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // GET: api/Productos/5
-
+        [Authorize(Roles = "N,C,A")]
         [ResponseType(typeof(Producto))]
         public IHttpActionResult GetProducto(int id)
         {
@@ -73,6 +74,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // PUT: api/Productos/5
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProducto(int id, Producto producto)
         {
@@ -105,6 +107,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Productos
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(Producto))]
         public IHttpActionResult PostProducto(Producto producto)
         {
@@ -120,6 +123,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // DELETE: api/Productos/5
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(Producto))]
         public IHttpActionResult DeleteProducto(int id)
         {

@@ -18,6 +18,7 @@ namespace WebApiMiVECI.Controllers
     public class FormadePagoController : ApiController
     {
         // GET: api/FormadePago
+        [Authorize(Roles = "C,N,A")]
         public IHttpActionResult GetFormaPago()
         {
             try
@@ -32,7 +33,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // GET: api/FormadePago/5
-
+        [Authorize(Roles = "A")]
         [ResponseType(typeof(FormaPago))]
         public IHttpActionResult GetFormaPago(int id)
         {
@@ -52,6 +53,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // PUT: api/FormadePago/5
+        [Authorize(Roles = "A")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutFormaPago(int id, FormaPago formaPago)
         {
@@ -85,6 +87,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/FormadePago
+        [Authorize(Roles = "A")]
         [ResponseType(typeof(FormaPago))]
         public IHttpActionResult PostFormaPago(FormaPago formaPago)
         {
@@ -100,6 +103,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // DELETE: api/FormadePago/5
+        [Authorize(Roles = "A")]
         [ResponseType(typeof(FormaPago))]
         public IHttpActionResult DeleteFormaPago(int id)
         {

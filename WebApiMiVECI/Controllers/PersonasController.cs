@@ -18,6 +18,7 @@ namespace WebApiMiVECI.Controllers
     public class PersonasController : ApiController
     {
         // GET: api/Personas
+        [Authorize(Roles = "A")]
         public IHttpActionResult GetPersona()
         {
             try
@@ -32,6 +33,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // GET: api/Personas/5
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(Persona))]
         public IHttpActionResult GetPersona(int id)
         {
@@ -51,6 +53,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // PUT: api/Personas/5
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPersona(int id, Persona persona)
         {
@@ -83,6 +86,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Personas
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(Persona))]
         public IHttpActionResult PostPersona(Persona persona)
         {
@@ -98,6 +102,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // DELETE: api/Personas/5
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(Persona))]
         public IHttpActionResult DeletePersona(int id)
         {

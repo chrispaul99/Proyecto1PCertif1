@@ -14,12 +14,13 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVECI.Controllers
 {
-    //[Authorize]
-
+    
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class NegociosController : ApiController
     {
- 
+
+        
+        [AllowAnonymous]
         public IHttpActionResult GetNegocio()
         {
             try
@@ -35,6 +36,7 @@ namespace WebApiMiVECI.Controllers
 
         // GET: api/Negocios/5
 
+        [Authorize(Roles = "N,C,A")]
         [ResponseType(typeof(Negocio))]
         public IHttpActionResult GetNegocio(int id)
         {
@@ -54,6 +56,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // PUT: api/Negocios/5
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutNegocio(Negocio negocio)
         {
@@ -80,6 +83,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Negocios
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(Negocio))]
         public IHttpActionResult PostNegocio(Negocio negocio)
         {
@@ -95,6 +99,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // DELETE: api/Negocios/5
+        [Authorize(Roles = "N,A")]
         [ResponseType(typeof(Negocio))]
         public IHttpActionResult DeleteNegocio(int id)
         {

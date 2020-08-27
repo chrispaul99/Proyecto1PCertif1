@@ -17,6 +17,7 @@ namespace WebApiMiVECI.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ListasController : ApiController
     {
+        [Authorize(Roles = "C,N,A")]
         public IHttpActionResult GetLista()
         {
             try
@@ -31,7 +32,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // GET: api/Listas/5
-
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(Lista))]
         public IHttpActionResult GetLista(int id)
         {
@@ -51,6 +52,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // PUT: api/Listas/5
+        [Authorize(Roles = "C,A")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLista(int id, Lista lista)
         {
@@ -83,6 +85,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Listas
+        [Authorize(Roles = "C,A")]
         [ResponseType(typeof(Lista))]
         public IHttpActionResult PostLista(Lista lista)
         {
@@ -98,6 +101,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // DELETE: api/Listas/5
+        [Authorize(Roles = "C,A")]
         [ResponseType(typeof(Lista))]
         public IHttpActionResult DeleteLista(int id)
         {
