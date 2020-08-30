@@ -41,7 +41,7 @@ namespace WebApiMiVeci.Models
                     audience: audienceToken,
                     claims: _Claims,
                     notBefore: DateTime.UtcNow,
-                    // Exipra a la 24 horas.
+                    // Expira en 10 min.
                     expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireTime))
                 );
 

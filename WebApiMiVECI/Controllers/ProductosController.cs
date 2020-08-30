@@ -52,7 +52,21 @@ namespace WebApiMiVECI.Controllers
                 return Content(HttpStatusCode.BadRequest, ex);
             }
         }
-
+        [Authorize(Roles = "N,C,A")]
+        [HttpGet]
+        [Route("Search")]
+        public IHttpActionResult Search(string criterio)
+        {
+            try
+            {
+                List<Producto> todos = ProductoBLL.List(criterio);
+                return Content(HttpStatusCode.OK, todos);
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.BadRequest, ex);
+            }
+        }
         // GET: api/Productos/5
         [Authorize(Roles = "N,C,A")]
         [ResponseType(typeof(Producto))]

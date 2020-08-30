@@ -20,7 +20,6 @@ namespace WebApiMiVECI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-            //config.MapHttpAttributeRoutes();
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
             = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }

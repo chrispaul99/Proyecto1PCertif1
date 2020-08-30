@@ -101,5 +101,11 @@ namespace BEUProyecto.Transactions
             }
             return listado;
         }
+
+        public static List<Negocio> List(string criterio)
+        {
+            Entities db = new Entities();
+            return db.Negocio.Where(x => x.nombre.Contains(criterio)).ToList();
+        }
     }
 }

@@ -41,10 +41,10 @@ namespace WebApiMiVECI.Controllers
             Persona usuario = new Persona();
             usuario.correo = login.correo;
             usuario.password = login.password;
-            Persona user = PersonaBLL.ValidateLogin(usuario);
-            if (user != null)
+            usuario = PersonaBLL.ValidateLogin(usuario);
+            if (usuario != null)
             {
-                return Ok(new { token = TokenGenerator.GenerateTokenJwt(user) });
+                return Ok(new { token = TokenGenerator.GenerateTokenJwt(usuario) });
             }
             else
             {

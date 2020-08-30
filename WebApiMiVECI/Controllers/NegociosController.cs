@@ -14,7 +14,8 @@ using BEUProyecto.Transactions;
 
 namespace WebApiMiVECI.Controllers
 {
-    
+
+    [RoutePrefix("api/Negocios")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class NegociosController : ApiController
     {
@@ -33,9 +34,24 @@ namespace WebApiMiVECI.Controllers
                 return Content(HttpStatusCode.BadRequest, ex);
             }
         }
-
+        [Authorize(Roles = "N,C,A")]
+        [HttpGet]
+        [Route("Search")]
+        public IHttpActionResult Search(string criterio)
+        {
+            try
+            {
+                List<Negocio> todos = NegocioBLL.List(criterio);
+                return Content(HttpStatusCode.OK, todos);
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.BadRequest, ex);
+            }
+        }
         // GET: api/Negocios/5
 
+        [Authorize]
         [Authorize(Roles = "N,C,A")]
         [ResponseType(typeof(Negocio))]
         public IHttpActionResult GetNegocio(int id)
