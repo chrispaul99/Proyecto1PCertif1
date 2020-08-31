@@ -87,6 +87,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Direcciones
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(Direccion))]
         public IHttpActionResult PostDireccion(Direccion direccion)
         {

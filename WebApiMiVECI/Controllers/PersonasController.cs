@@ -86,6 +86,7 @@ namespace WebApiMiVECI.Controllers
         }
 
         // POST: api/Personas
+        [Authorize(Roles = "C,N,A")]
         [ResponseType(typeof(Persona))]
         public IHttpActionResult PostPersona(Persona persona)
         {

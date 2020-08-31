@@ -119,10 +119,5 @@ namespace BEUProyecto.Transactions
             Entities db = new Entities();
             return db.Producto.Where(x => x.nombre.Contains(criterio)).ToList();
         }
-        public static List<Producto> ListForNegocio(int id, string criterio)
-        {
-            Entities db = new Entities();
-            return db.Producto.Where(x => x.nombre.Contains(criterio) && x.idNegocio == id).ToList();
-        }
     }
 }
