@@ -55,11 +55,11 @@ namespace WebApiMiVECI.Controllers
         [Authorize(Roles = "N,C,A")]
         [HttpGet]
         [Route("Search")]
-        public IHttpActionResult Search(string criterio)
+        public IHttpActionResult Search(int id,string criterio)
         {
             try
             {
-                List<Producto> todos = ProductoBLL.List(criterio);
+                List<Producto> todos = ProductoBLL.ListForNegocio(id,criterio);
                 return Content(HttpStatusCode.OK, todos);
             }
             catch (Exception ex)
